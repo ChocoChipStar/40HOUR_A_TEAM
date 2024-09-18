@@ -23,8 +23,8 @@ public class TitleScene : MonoBehaviour
         // 現在の入力情報
         var keyboardCurrent = Keyboard.current;
         var gamepadCurrent = Gamepad.current;
-        var buttonB = Input.GetButtonDown("Submit");
-        var buttonA = Input.GetButtonDown("Cancel");
+        var buttonB = Gamepad.current.bButton.wasPressedThisFrame;
+        var buttonA = Gamepad.current.aButton.wasPressedThisFrame;
 
 
         // 接続チェック
