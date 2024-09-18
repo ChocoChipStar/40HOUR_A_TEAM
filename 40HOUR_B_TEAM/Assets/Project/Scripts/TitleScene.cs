@@ -21,12 +21,14 @@ public class TitleScene : MonoBehaviour
     void Update()
     {
         // 現在の入力情報
-        var current = Keyboard.current;
-        var buttonB = Input.GetButtonDown("Submit");
+        var keyboardCurrent = Keyboard.current;
+        var gamepadCurrent = Gamepad.current;
+        var buttonB = Gamepad.current.bButton.wasPressedThisFrame;
+        var buttonA = Gamepad.current.aButton.wasPressedThisFrame;
 
 
         // 接続チェック
-        if (current == null)
+        if (keyboardCurrent == null)
         {
             // キーボードが接続されていないと
             // Keyboard.currentがnullになる
@@ -34,19 +36,27 @@ public class TitleScene : MonoBehaviour
         }
 
 
-        if(buttonB == false)
+        if(gamepadCurrent == null)
         {
             //コントローラーが接続されていないと
-            //buttonBがnullになる。
+            //gamepadCurrentがnullになる。
             return;
         }
 
-
-
-        //SpaceキーかコントローラーのBボタンが押された瞬間に
-        if (current.spaceKey.wasPressedThisFrame || buttonB)
+        
+        if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonB)
         {
+
+            //enterキーかコントローラーのBボタンが押された瞬間に
+            //メインシーンをロード
             SceneManager.LoadScene("MainScene");
+      
+        }
+        if(keyboardCurrent.spaceKey.wasPressedThisFrame || buttonA)
+        {
+            //spaceキーかントローラーのAボタンが押された瞬間に
+            //アプリケーションを閉じる
+            Application.Quit();
         }
 
         
