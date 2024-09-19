@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
+    [SerializeField]
+    private RoundCounter roundCounter;
+
     private const float DrawStartTextTime = 0.15f;
 
     private const float DrawRoundTextTime = 1.35f;
@@ -77,5 +80,6 @@ public class GameMaster : MonoBehaviour
         yield return new WaitForSeconds(ForwardMovementTime);
 
         // ラウンドカウントを増やす
+        roundCounter.SetNextRound();
     }
 }

@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GenerateHat : MonoBehaviour
 {
-    private int hatCount;
-
     private const int HatMax = 10;
 
     private readonly int[] GenerateCountInRound = new int[] { 5, 5, 4, 4, 3 };
