@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerScriptable
   m_EditorClassIdentifier: 
   AnimDataList:
-  - anime_Stand: {fileID: 0}
+  - anime_Stand: {fileID: 6200578666267062213, guid: b62261a3d24b6b5408b9afd3fc8abcf5, type: 3}
     anime_Shock: {fileID: 0}
     anime_YareYare: {fileID: 0}
     anime_4th: {fileID: 0}

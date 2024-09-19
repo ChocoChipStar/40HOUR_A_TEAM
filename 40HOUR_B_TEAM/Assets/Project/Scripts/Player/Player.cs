@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] int gamePadCount;
-    [SerializeField] Object playerModel;
-
+    [SerializeField] SpriteRenderer okTextSprite;
+    [SerializeField] PlayerScriptable playerScriptable;
+    [SerializeField] Animator animator;
     private Gamepad gamepads;
 
-    [SerializeField]
-    private PlayerScriptable playerScriptable;
 
     void Start()
     {
-
+        okTextSprite.enabled = false;
     }
 
     // Update is called once per frame
@@ -26,11 +27,11 @@ public class Player : MonoBehaviour
         if (gamepads.aButton.wasPressedThisFrame)
         {
             Debug.Log("A");
-            //playerScriptable.AnimDataList[0].taikiAnimation;
         }
         if (gamepads.bButton.wasPressedThisFrame)
         {
             Debug.Log("B");
+            //animator.
         }
         if(gamepads.xButton.wasPressedThisFrame)
         {
@@ -40,9 +41,10 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Y");
         }
-        if (gamepads.leftShoulder.wasPressedThisFrame)
+        if (gamepads.leftShoulder.isPressed && gamepads.rightShoulder.isPressed)
         {
-            Debug.Log("LB");
+            Debug.Log("OK");
+            okTextSprite.enabled = true;
         }
     }
 }
