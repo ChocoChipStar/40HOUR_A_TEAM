@@ -425,12 +425,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435752564}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.39, y: -12.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 23.899998, y: -13.571427, z: 0}
+  m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1459809982}
+  m_Father: {fileID: 1518325469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &435752566
 SpriteRenderer:
@@ -516,6 +516,7 @@ MonoBehaviour:
   gamePadCount: 0
   okTextSprite: {fileID: 837880833}
   playerScriptable: {fileID: 11400000, guid: 1977449ae4aa1fe4b9d84b59e4c6ed10, type: 2}
+  animator: {fileID: 587266736}
 --- !u!4 &450337223
 Transform:
   m_ObjectHideFlags: 0
@@ -795,7 +796,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9aa81fed9f1d5fa40996d9fc8db82140, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 435752565}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9aa81fed9f1d5fa40996d9fc8db82140, type: 3}
       insertIndex: -1
@@ -833,6 +837,7 @@ MonoBehaviour:
   gamePadCount: 0
   okTextSprite: {fileID: 0}
   playerScriptable: {fileID: 11400000, guid: 1977449ae4aa1fe4b9d84b59e4c6ed10, type: 2}
+  animator: {fileID: 0}
 --- !u!4 &506443074
 Transform:
   m_ObjectHideFlags: 0
@@ -1632,6 +1637,7 @@ MonoBehaviour:
   gamePadCount: 0
   okTextSprite: {fileID: 0}
   playerScriptable: {fileID: 11400000, guid: 1977449ae4aa1fe4b9d84b59e4c6ed10, type: 2}
+  animator: {fileID: 0}
 --- !u!4 &910104013
 Transform:
   m_ObjectHideFlags: 0
@@ -2043,6 +2049,7 @@ MonoBehaviour:
   gamePadCount: 0
   okTextSprite: {fileID: 0}
   playerScriptable: {fileID: 11400000, guid: 1977449ae4aa1fe4b9d84b59e4c6ed10, type: 2}
+  animator: {fileID: 0}
 --- !u!4 &1459809982
 Transform:
   m_ObjectHideFlags: 0
@@ -2056,7 +2063,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 435752565}
   - {fileID: 1518325469}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
