@@ -8,18 +8,17 @@ using UnityEngine.UI;
 public class TutorialToMainSceneTransition : MonoBehaviour
 {
     //フェードアウト用の変数
-    private GameObject fadeOutImage;
+    [SerializeField]
     private Image fadeOut_image;
-    private Color alpha;
+
+    private float alpha;
     private bool fadeOutFlag;　
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject fadeOutImage = GameObject.Find("FadeOut");
-        fadeOut_image = fadeOutImage.GetComponent<Image>();
 
-        alpha = new Color(0.0f, 0.0f, 0.0f, 0.002f);
+        alpha = 0.002f;
         fadeOutFlag = false;
     }
 
@@ -54,26 +53,25 @@ public class TutorialToMainSceneTransition : MonoBehaviour
         }
 
         if (fadeOutFlag == true && fadeOut_image.color.a < 1)
-            {
+        {
             //フェードアウト
-                FadeOut();
-            }
+            FadeOut();
+        }
 
             
-            if (fadeOut_image.color.a >= 1)
-            {
+        if (fadeOut_image.color.a >= 1)
+        {
             //画面が暗くなったらメインシーンをロード
-
             SceneManager.LoadScene("MainScene");
 
-            }
+        }
 
     }
 
     void FadeOut()
     {
         //イメージの透明度を少しずつ下げる
-            fadeOut_image.color += alpha;
-        
+        fadeOut_image.color += new Color(0, 0, 0, alpha);
+
     }
 }
