@@ -12,21 +12,71 @@ public class ResultSelectScript : MonoBehaviour
     [SerializeField]
     private AudioSource soundEffect = null;
 
-    bool isSelect = false;
+    [SerializeField]
+    private GameObject retryButtonObj;
+    [SerializeField]
+    private GameObject titleButtonObj;
 
-    void Awake()
+    [SerializeField]
+    private Button retryButton;
+
+    [SerializeField]
+    private Button titleButton;
+
+    [SerializeField]
+    private Image retryImage;
+
+    [SerializeField]
+    private Image titleImage;
+
+    public bool isSelect = false;
+    bool leftStick = false;
+    bool rightStick = false;    
+
+    void Start()
     {
-        
+        retryButton.enabled = false;
+        titleButton.enabled = false;
+        retryImage.enabled = false;
+        titleImage.enabled = false;
         music.Play();
         Invoke("ButtonActive", 4);
     }
 
     public void ButtonActive()
     {
-        var button = GetComponent<Button>();
-        button.enabled = true;
-        var image = GetComponent<Image>();
-        image.enabled = true;
+        retryButton.enabled = true;
+        titleButton.enabled = true;
+        retryImage.enabled = true;
+        titleImage.enabled = true;
+    }
+
+    private void Update()
+    {
+        //Debug.Log(Gamepad.current.leftStick.ReadValue().x);
+        if(Gamepad.current.leftStick.ReadValue().x > 0.2f && !isSelect)
+        {
+            leftStick = true;
+        }
+        else if(Gamepad.current.leftStick.ReadValue().x < -0.2f && !isSelect)
+        {
+            rightStick = true;
+        }
+        else
+        {
+            leftStick = false;
+            rightStick = false;
+        }
+
+        if (leftStick)
+        {
+            EventSystem.current.SetSelectedGameObject(retryButtonObj);
+        }
+        else if (rightStick)
+        {
+            EventSystem.current.SetSelectedGameObject(titleButtonObj);
+        }
+        
     }
 
     // Update is called once per frame
