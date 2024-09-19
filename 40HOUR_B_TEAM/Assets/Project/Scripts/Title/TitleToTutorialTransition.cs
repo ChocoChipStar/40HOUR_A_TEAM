@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
-public class TutorialScene : MonoBehaviour
+
+
+
+public class TitleToTutorialTransition : MonoBehaviour
 {
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +24,10 @@ public class TutorialScene : MonoBehaviour
         var keyboardCurrent = Keyboard.current;
         var gamepadCurrent = Gamepad.current;
         var buttonB = Gamepad.current.bButton.wasPressedThisFrame;
+        var buttonA = Gamepad.current.aButton.wasPressedThisFrame;
 
+
+        // 接続チェック
         if (keyboardCurrent == null)
         {
             // キーボードが接続されていないと
@@ -27,21 +35,31 @@ public class TutorialScene : MonoBehaviour
             return;
         }
 
-        if (gamepadCurrent == null)
+
+        if(gamepadCurrent == null)
         {
             //コントローラーが接続されていないと
             //gamepadCurrentがnullになる。
             return;
         }
 
+        
         if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonB)
         {
 
             //enterキーかコントローラーのBボタンが押された瞬間に
             //メインシーンをロード
             SceneManager.LoadScene("MainScene");
-
+      
+        }
+        if(keyboardCurrent.spaceKey.wasPressedThisFrame || buttonA)
+        {
+            //spaceキーかントローラーのAボタンが押された瞬間に
+            //アプリケーションを閉じる
+            Application.Quit();
         }
 
+        
+        
     }
 }
