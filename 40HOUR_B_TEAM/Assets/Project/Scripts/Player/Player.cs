@@ -9,13 +9,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] int gamePadCount;
     [SerializeField] SpriteRenderer okTextSprite;
-    [SerializeField] PlayerScriptable playerScriptable;
     [SerializeField] Animator animator;
     private Gamepad gamepads;
+
+    public bool OKflg;
 
 
     void Start()
     {
+        OKflg = false;
         okTextSprite.enabled = false;
     }
 
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("OK");
             okTextSprite.enabled = true;
+            OKflg = true;
         }
     }
 }
