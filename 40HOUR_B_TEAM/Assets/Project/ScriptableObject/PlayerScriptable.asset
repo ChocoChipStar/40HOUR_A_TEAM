@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceceefa9b4fc5e4d9fc9b5686647d69, type: 3}
+  m_Name: PlayerScriptable
+  m_EditorClassIdentifier: 
+  AnimDataList:
+  - anime_Stand: {fileID: 0}
+    anime_Shock: {fileID: 0}
+    anime_YareYare: {fileID: 0}
+    anime_4th: {fileID: 0}
+    anime_Happy: {fileID: 0}
