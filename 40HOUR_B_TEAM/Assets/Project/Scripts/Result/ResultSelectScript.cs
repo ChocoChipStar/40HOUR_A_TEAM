@@ -8,25 +8,50 @@ using System.Xml.Serialization;
 public class ResultSelectScript : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource musicAudio = null;
+    private AudioSource music = null;
     [SerializeField]
     private AudioSource soundEffect = null;
 
-    void Start()
+    bool isSelect = false;
+
+    void Awake()
     {
-        musicAudio.Play();
+        
+        music.Play();
+        Invoke("ButtonActive", 4);
+    }
+
+    public void ButtonActive()
+    {
+        var button = GetComponent<Button>();
+        button.enabled = true;
+        var image = GetComponent<Image>();
+        image.enabled = true;
     }
 
     // Update is called once per frame
     public void TitleOnclick()
     {
-        soundEffect.Play();
-        Invoke("ForTitleScene",2);
+
+        if (!isSelect)
+        {
+            soundEffect.Play();
+            isSelect = true;
+            Invoke("ForTitleScene", 2);
+            
+        }
+       
     }
     public void RetryOnclick()
     {
-        soundEffect.Play();
-        Invoke("ForMainScene", 2);
+
+        if (!isSelect)
+        {
+            soundEffect.Play();
+            isSelect = true;
+            Invoke("ForMainScene", 2);
+           
+        }
     }
     public void ForTitleScene()
     {
