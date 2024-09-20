@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameTimer : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameTimer : MonoBehaviour
     //フラグとタイマー時間を初期化
     void Start()
     {
-        timer = 10.9f;
+        timer = 10.99f;
         timerStop = false;
     }
 
