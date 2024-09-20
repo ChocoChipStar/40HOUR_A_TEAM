@@ -17,26 +17,9 @@ public class HatManager : MonoBehaviour
 
     private List<int> hatNumber = new List<int>();
 
-    int a = 0;
-
     private void Start()
     {
-        ResetHatData(a);
-    }
-
-    void Update()
-    {
-        if(Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            SelectedHat(a);
-            GenerateHat(a);
-            ResetHatData(a);
-        }
-
-        if(Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            a++;
-        }
+        ResetHatData(0);
     }
 
     private void SelectedHat(int currentRound)
@@ -88,5 +71,12 @@ public class HatManager : MonoBehaviour
         {
             hatNumber.Add(i);
         }
+    }
+
+    public void LineUpHat(int currentRound)
+    {
+        SelectedHat(currentRound);
+        GenerateHat(currentRound);
+        ResetHatData(currentRound);
     }
 }

@@ -4,7 +4,13 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
     [SerializeField]
-    private RoundCounter roundCounter;
+    private RoundCounter roundCounter = null;
+
+    [SerializeField]
+    private HatManager hatManager = null;
+
+    [SerializeField]
+    private MannequinManager mannequinManager = null;
 
     private const float DrawStartTextTime = 0.15f;
 
@@ -24,7 +30,15 @@ public class GameMaster : MonoBehaviour
 
     private void Start()
     {
+        mannequinManager.GenerateMannequin(roundCounter.GetCurrentRound());
+
         StartCoroutine(DrawRoundText());
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            mannequinManager.GenerateMannequin(roundCounter.GetCurrentRound());
     }
 
     private IEnumerator DrawRoundText()
@@ -73,7 +87,12 @@ public class GameMaster : MonoBehaviour
 
         yield return new WaitForSeconds(ReactionTime);
 
+        // マネキンを再配置
+        mannequinManager.GenerateMannequin(roundCounter.GetCurrentRound());
+        
         // 帽子をランダム再生成
+
+
         // プレイヤーが前に移動してくるアニメーション
         // カメラがズームアウトする
 

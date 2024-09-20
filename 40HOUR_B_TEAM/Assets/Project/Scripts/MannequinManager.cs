@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RelocationMannequin : MonoBehaviour
+public class MannequinManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject mannequin = null;
@@ -15,24 +15,17 @@ public class RelocationMannequin : MonoBehaviour
 
     private const int MannequinMax = 5;
 
-    int a = 0;
-
-    private void Update()
+    /// <summary>
+    /// ラウンド毎で配置位置が違うため再度配置し直す処理を実行します
+    /// </summary>
+    /// <param name="currentRound"></param>
+    public void GenerateMannequin(int currentRound)
     {
-        if(Keyboard.current.enterKey.wasPressedThisFrame)
+        for(int i = 0; i < parentTrans.childCount; i++)
         {
-            Relocating(a);
+            Destroy(parentTrans.GetChild(i).gameObject);
         }
 
-        if(Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            a++;
-        }
-    }
-
-
-    private void Relocating(int currentRound)
-    {
         for(int i = 0; i < GenerateCountInRound[currentRound]; i++)
         {
             var instance = Instantiate(mannequin, parentTrans);
