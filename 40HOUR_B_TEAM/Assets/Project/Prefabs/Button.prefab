@@ -476,7 +476,6 @@ MonoBehaviour:
   buttonPositionX: {fileID: 8749587639917136905}
   buttonPositionY: {fileID: 4677533556352910687}
   buttonPositionPlus: {fileID: 4126205353393136678}
-  debug: {fileID: 0}
 --- !u!1 &8299937867043634253
 GameObject:
   m_ObjectHideFlags: 0
