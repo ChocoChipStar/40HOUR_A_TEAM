@@ -34,12 +34,23 @@ public class ResultSelectScript : MonoBehaviour
     [SerializeField]
     private Image titleImage;
 
+    //フェードアウト用イメージコンポーネント
+    [SerializeField]
+    private Image fadeOutImage;
+
     //セレクトフラグ
     public bool isSelect = false;
 
+    //フェードアウト用フラグ
+    private bool isTitle = false;
+    private bool isRetry = false;
+
     //スティック入力フラグ
-    bool leftStick = false;
-    bool rightStick = false;    
+    private bool leftStick = false;
+    private bool rightStick = false;
+
+    //フェードアウト用　画像の透明度の変化値
+    private float alpha = 0.01f; 
 
     //ボタン非表示
     void Start()
@@ -97,6 +108,33 @@ public class ResultSelectScript : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(titleButtonObj);
         }
         
+        if(isSelect && isTitle && fadeOutImage.color.a < 1)
+        {
+            
+
+            fadeOutImage.color += new Color(0, 0, 0, alpha);
+
+        }
+        else if(isSelect && isTitle && fadeOutImage.color.a >= 1)
+        {
+            //完全に暗転した１秒後にシーン遷移
+            Invoke("ForTitleScene", 1); 　
+        }
+
+        if (isSelect && isRetry && fadeOutImage.color.a < 1)
+        {
+
+
+            fadeOutImage.color += new Color(0, 0, 0, alpha);
+
+        }
+        else if (isSelect && isRetry && fadeOutImage.color.a >= 1)
+        {
+            //完全に暗転した１秒後にシーン遷移
+            Invoke("ForMainScene", 1);
+        }
+
+
     }
 
    
@@ -108,8 +146,8 @@ public class ResultSelectScript : MonoBehaviour
         {
             selectSound.Play();
             isSelect = true;
-            Invoke("ForTitleScene", 2);
-            
+            isTitle = true;
+
         }
        
     }
@@ -126,7 +164,8 @@ public class ResultSelectScript : MonoBehaviour
         {
             selectSound.Play();
             isSelect = true;
-            Invoke("ForMainScene", 2);
+            isRetry = true;
+            
            
         }
     }
