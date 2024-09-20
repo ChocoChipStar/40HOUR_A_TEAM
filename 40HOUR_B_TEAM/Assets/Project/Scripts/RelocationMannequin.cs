@@ -11,6 +11,8 @@ public class RelocationMannequin : MonoBehaviour
 
     private GameObject[] generatedMannequins = new GameObject[MannequinMax];
 
+    private readonly int[] GenerateCountInRound = new int[] { 5, 5, 4, 4, 3 };
+
     private const int MannequinMax = 5;
 
     int a = 0;
@@ -31,10 +33,11 @@ public class RelocationMannequin : MonoBehaviour
 
     private void Relocating(int currentRound)
     {
-        for(int i = 0; i < HatData.GenerateCountInRound[currentRound]; i++)
+        for(int i = 0; i < GenerateCountInRound[currentRound]; i++)
         {
             var instance = Instantiate(mannequin, parentTrans);
             instance.transform.position = new Vector3(HatData.GenerateFixXPosition[currentRound,i], HatData.GenerateFixYPosition, HatData.GenerateFixZPosition);
+            instance.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
         }
     }
 }

@@ -8,7 +8,7 @@ public static class HatData
 
     public static readonly int[] GenerateCountInRound = new int[] { 4, 4, 3, 2, 1 };
 
-    public static readonly Vector3[,] GeneratePosition;
+    public static readonly Vector3[,] GeneratePosition = new Vector3[,] { };
 
     public static readonly float[,] GenerateFixXPosition;
 
@@ -16,7 +16,7 @@ public static class HatData
 
     public const float GenerateFixZPosition = -60.0f;
 
-    public const int RoundMax = 4;
+    public const int RoundMax = 5;
 
     public const int HatMax = 10;
 
@@ -24,7 +24,7 @@ public static class HatData
     {
         KingHatGenerateRound = 3;
 
-        GeneratePosition = new Vector3[RoundMax, GeneratePointMax];
+        GenerateFixXPosition = new float[RoundMax, GeneratePointMax];
 
         GenerateFixXPosition[0, 0] = -12.0f;
         GenerateFixXPosition[0, 1] = -6.0f;
