@@ -9,12 +9,15 @@ using UnityEngine.InputSystem;
 
 public class TitleToTutorialTransition : MonoBehaviour
 {
-    
+    [SerializeField]
+    ScenechangeEffect scenechangeEffect;
+
+    bool changeEffect;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        changeEffect = false;
     }
 
     // Update is called once per frame
@@ -36,30 +39,46 @@ public class TitleToTutorialTransition : MonoBehaviour
         }
 
 
-        if(gamepadCurrent == null)
+        if (gamepadCurrent == null)
         {
             //コントローラーが接続されていないと
             //gamepadCurrentがnullになる。
             return;
         }
 
-        
+        Debug.Log(keyboardCurrent.enterKey.wasPressedThisFrame);
+        Debug.Log(buttonB);
+
         if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonB)
         {
 
             //enterキーかコントローラーのBボタンが押された瞬間に
-            //メインシーンをロード
-            SceneManager.LoadScene("MainScene");
-      
+            //エフェクトを再生
+            changeEffect = true;
+            Debug.Log(changeEffect);
+
         }
-        if(keyboardCurrent.spaceKey.wasPressedThisFrame || buttonA)
+        if (keyboardCurrent.spaceKey.wasPressedThisFrame || buttonA)
         {
             //spaceキーかントローラーのAボタンが押された瞬間に
             //アプリケーションを閉じる
             Application.Quit();
         }
+        
+        //エフェクト再生後メインシーンをロード
+        if (scenechangeEffect.switchCount == 59)
+        {
+            SceneManager.LoadScene("MainScene");
+        }
 
-        
-        
+
+    }
+    private void FixedUpdate()
+    {
+        if (changeEffect)
+        {
+            //シーンチェンジエフェクトを再生
+            scenechangeEffect.ChangeEffect();
+        }
     }
 }
