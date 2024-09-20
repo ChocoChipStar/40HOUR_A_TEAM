@@ -2,18 +2,18 @@ using UnityEngine;
 
 public static class HatData
 {
-    public static readonly int HatMax;
+    private const int generatePointCount = 5;
+
     public static readonly int KingHatGenerateRound;
 
     public static readonly int[] GenerateCountInRound = new int[] { 4, 4, 3, 2, 1 };
 
-    public static readonly Vector3[] GeneratePosition;
+    public static readonly Vector3[,] GeneratePosition;
 
-    private const int generatePointCount = 5;
+    public const int HatMax = 10;
 
     static HatData()
     {
-        HatMax = 10;
         KingHatGenerateRound = 3;
 
         GeneratePosition = new Vector3[generatePointCount];
