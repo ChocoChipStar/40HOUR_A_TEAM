@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HatManager : MonoBehaviour
 {
@@ -14,30 +15,33 @@ public class HatManager : MonoBehaviour
 
     private List<GameObject> generateHats = new List<GameObject>();
 
+    int a = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if(Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            HatRandomizer(a);
+            GenerateHat(a);
+            ResetHatData();
+        }
+
+        if(Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            a++;
+        }
     }
 
     private void HatRandomizer(int currentRound)
     {
         generateHats.Add(eaglesHat);
 
-        var round = HatData.GenerateCountInRound[currentRound];
-        if (round >= HatData.KingHatGenerateRound)
+        if (currentRound >= HatData.KingHatGenerateRound)
         {
             generateHats.Add(kingHat);
         }
 
-        for(int i = 0; i < round; i++)
+        for(int i = 0; i < HatData.GenerateCountInRound[currentRound]; i++)
         {
             generateHats.Add(normalHat[Random.Range(0, HatData.HatMax)]);
         }
