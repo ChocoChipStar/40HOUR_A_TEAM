@@ -15,15 +15,22 @@ public class HatManager : MonoBehaviour
 
     private List<GameObject> generateHats = new List<GameObject>();
 
+    private List<int> hatNumber = new List<int>();
+
     int a = 0;
+
+    private void Start()
+    {
+        ResetHatData(a);
+    }
 
     void Update()
     {
         if(Keyboard.current.enterKey.wasPressedThisFrame)
         {
-            HatRandomizer(a);
+            SelectedHat(a);
             GenerateHat(a);
-            ResetHatData();
+            ResetHatData(a);
         }
 
         if(Keyboard.current.rKey.wasPressedThisFrame)
@@ -32,7 +39,7 @@ public class HatManager : MonoBehaviour
         }
     }
 
-    private void HatRandomizer(int currentRound)
+    private void SelectedHat(int currentRound)
     {
         generateHats.Add(eaglesHat);
 
@@ -41,20 +48,27 @@ public class HatManager : MonoBehaviour
             generateHats.Add(kingHat);
         }
 
-        for(int i = 0; i < HatData.GenerateCountInRound[currentRound]; i++)
+        ShuffleHat(hatNumber, 0, HatData.HatMax);
+        
+        for (int i = 0; i < HatData.GenerateCountInRound[currentRound]; i++)
         {
-            generateHats.Add(normalHat[Random.Range(0, HatData.HatMax)]);
+            generateHats.Add(normalHat[hatNumber[i]]);
         }
 
-        for (int i = 0; i < generateHats.Count; i++)
-        {
-            var randomValue = Random.Range(0, generateHats.Count);
+        ShuffleHat(generateHats, 0, generateHats.Count);
+    }
 
-            var hat = generateHats[i];
-            var randomHat = generateHats[randomValue];
-            generateHats[i] = randomHat;
-            generateHats[randomValue] = hat;
+    private List<T> ShuffleHat<T>(List<T> list, int min, int max)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            var randomValue = Random.Range(min, max);
+            var temp = list[i];
+            list[i] = list[randomValue];
+            list[randomValue] = temp;
         }
+
+        return list;
     }
 
     private void GenerateHat(int currentRound)
@@ -65,8 +79,14 @@ public class HatManager : MonoBehaviour
         }
     }
 
-    private void ResetHatData()
+    private void ResetHatData(int currentRound)
     {
         generateHats.Clear();
+        hatNumber.Clear();
+
+        for (int i = 0; i < HatData.HatMax; i++)
+        {
+            hatNumber.Add(i);
+        }
     }
 }
