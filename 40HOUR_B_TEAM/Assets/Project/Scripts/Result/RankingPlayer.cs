@@ -5,7 +5,7 @@ using UnityEngine;
 public class RankingPlayer : MonoBehaviour
 {
     [SerializeField]
-    private int ranking;
+    public int ranking;
 
     [SerializeField]
     private Animator animator;
@@ -19,19 +19,19 @@ public class RankingPlayer : MonoBehaviour
     {
         if (ranking == 1)
         {
-
+            animator.Play("run");
         }
         else if (ranking == 2)
         {
-
+            animator.Play("Decition");
         }
         else if (ranking == 3)
         {
-
+            animator.Play("Think");
         }
         else
         {
-
+            animator.Play("Stand");
         }
     }
 }

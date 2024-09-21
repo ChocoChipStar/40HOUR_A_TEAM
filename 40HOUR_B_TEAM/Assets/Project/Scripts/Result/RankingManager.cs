@@ -7,7 +7,10 @@ using UnityEngine;
 public class RankingManager : MonoBehaviour
 {
     [SerializeField]
-    private     TextMeshProUGUI[] rankingText;
+    private TextMeshProUGUI[] rankingText;
+
+    [SerializeField]
+    private RankingPlayer[] rankingPlayer;
 
     [SerializeField]
     private int[] scores = new int[4];
@@ -45,6 +48,8 @@ public class RankingManager : MonoBehaviour
 
             // TextMeshPro‚É•\Ž¦
             rankingText[i].text = rankingResult;
+
+            rankingPlayer[i].ranking = rank;
         }
     }
 }
