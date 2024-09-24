@@ -110,11 +110,12 @@ public class GetButton : MonoBehaviour
         }
 
         var padCurrent = Gamepad.all.Count;
+        Debug.Log(padCurrent);
         for (int i = 0;i < padCurrent;i++)
         {
             if (getPlayerButton[i] != NonEnterState)
             {
-                return;
+                continue;
             }
 
             SurveyInputButtons(i);
