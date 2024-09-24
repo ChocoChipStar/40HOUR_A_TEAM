@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundCounter: {fileID: 1425406574}
+  hatManager: {fileID: 215583638}
   mannequinManager: {fileID: 948359614}
 --- !u!4 &1425406576
 Transform:

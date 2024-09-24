@@ -31,7 +31,6 @@ public class GameMaster : MonoBehaviour
     private void Start()
     {
         mannequinManager.GenerateMannequin(roundCounter.GetCurrentRound());
-
         StartCoroutine(DrawRoundText());
     }
 

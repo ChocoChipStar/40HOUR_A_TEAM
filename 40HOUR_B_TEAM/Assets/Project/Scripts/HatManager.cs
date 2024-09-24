@@ -15,6 +15,8 @@ public class HatManager : MonoBehaviour
 
     private List<GameObject> generateHats = new List<GameObject>();
 
+    private List<GameObject> locatedHat = new List<GameObject>();
+
     private List<int> hatNumber = new List<int>();
 
     private void Start()
@@ -54,11 +56,19 @@ public class HatManager : MonoBehaviour
         return list;
     }
 
-    private void GenerateHat(int currentRound)
+    private void RelocationHat(int currentRound)
     {
+        for(int i = 0; i < locatedHat.Count; i++)
+        {
+            Destroy(locatedHat[i].gameObject);
+        }
+
+        locatedHat.Clear();
+
         for(int i = 0; i < generateHats.Count; i++)
         {
-            Instantiate(generateHats[i]);
+            var instance = Instantiate(generateHats[i]);
+            locatedHat.Add(instance);
         }
     }
 
@@ -76,7 +86,7 @@ public class HatManager : MonoBehaviour
     public void LineUpHat(int currentRound)
     {
         SelectedHat(currentRound);
-        GenerateHat(currentRound);
+        RelocationHat(currentRound);
         ResetHatData(currentRound);
     }
 }
