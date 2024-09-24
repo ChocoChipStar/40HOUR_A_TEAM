@@ -177,8 +177,8 @@ public class ResultSelectScript : MonoBehaviour
             selectSound.Play();
             isSelect = true;
             isTitle = true;
-
             resultButtonAnimator.SetBool("decideTitle", true);
+
 
         }
        
@@ -186,6 +186,7 @@ public class ResultSelectScript : MonoBehaviour
     public void ForTitleScene()
     {
         SceneManager.LoadScene("TitleScene");
+        
     }
 
     //ÉÅÉCÉìÉVÅ[ÉìÇ÷ëJà⁄
@@ -197,8 +198,8 @@ public class ResultSelectScript : MonoBehaviour
             selectSound.Play();
             isSelect = true;
             isRetry = true;
-            
-           
+            resultButtonAnimator.SetBool("decideRetry", true);
+
         }
     }
    
@@ -206,7 +207,7 @@ public class ResultSelectScript : MonoBehaviour
     private void ForMainScene()
     {
         SceneManager.LoadScene("MainScene");
-        resultButtonAnimator.SetBool("decideRetry", true);
+        
     }
 
     private bool FinishedPlaying()
