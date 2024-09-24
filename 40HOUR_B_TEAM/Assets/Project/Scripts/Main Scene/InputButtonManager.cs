@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
-using System.Linq;
-using System.Runtime.CompilerServices;
+using UnityEngine.UI;
 
-public class GetButton : MonoBehaviour
+public class InputButtonManager : MonoBehaviour
 {
     [SerializeField]
     private RoundCounter roundCounter;
@@ -34,7 +29,7 @@ public class GetButton : MonoBehaviour
     [SerializeField]
     private RectTransform buttonPositionPlus;
 
-    private int[] getPlayerButton = new int[4];
+    public readonly int[] InputButtonNum = new int[4];
 
     private readonly float[,] ButtonFixXPosition = new float[5, 5];
 
@@ -113,7 +108,7 @@ public class GetButton : MonoBehaviour
         Debug.Log(padCurrent);
         for (int i = 0;i < padCurrent;i++)
         {
-            if (getPlayerButton[i] != NonEnterState)
+            if (InputButtonNum[i] != NonEnterState)
             {
                 continue;
             }
@@ -126,15 +121,15 @@ public class GetButton : MonoBehaviour
     {
         if (Gamepad.all[surveyValue].aButton.wasPressedThisFrame)
         {
-            getPlayerButton[surveyValue] = ButtonANum;
+            InputButtonNum[surveyValue] = ButtonANum;
         }
         if (Gamepad.all[surveyValue].bButton.wasPressedThisFrame)
         {
-            getPlayerButton[surveyValue] = ButtonBNum;
+            InputButtonNum[surveyValue] = ButtonBNum;
         }
         if (Gamepad.all[surveyValue].xButton.wasPressedThisFrame)
         {
-            getPlayerButton[surveyValue] = ButtonXNum;
+            InputButtonNum[surveyValue] = ButtonXNum;
         }
 
         //ラウンド5(5を含む)以上ならリターン
@@ -145,7 +140,7 @@ public class GetButton : MonoBehaviour
 
         if (Gamepad.all[surveyValue].yButton.wasPressedThisFrame)
         {
-            getPlayerButton[surveyValue] = ButtonYNum;
+            InputButtonNum[surveyValue] = ButtonYNum;
         }
 
         // ラウンド3(3を含まない)以上ならリターン
@@ -157,7 +152,7 @@ public class GetButton : MonoBehaviour
         if (Gamepad.all[surveyValue].dpad.up.wasPressedThisFrame || Gamepad.all[surveyValue].dpad.down.wasPressedThisFrame ||
             Gamepad.all[surveyValue].dpad.left.wasPressedThisFrame || Gamepad.all[surveyValue].dpad.right.wasPressedThisFrame)
         {
-            getPlayerButton[surveyValue] = ButtonPlusNum;
+            InputButtonNum[surveyValue] = ButtonPlusNum;
         }
     }
     private void RelocatingButton(int currentRound)

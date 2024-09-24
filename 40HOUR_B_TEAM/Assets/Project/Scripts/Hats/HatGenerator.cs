@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HatManager : MonoBehaviour
+public class HatGenerator : MonoBehaviour
 {
     [SerializeField]
     private GameObject eaglesHat;

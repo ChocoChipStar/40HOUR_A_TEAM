@@ -7,7 +7,7 @@ public class GameMaster : MonoBehaviour
     private RoundCounter roundCounter = null;
 
     [SerializeField]
-    private HatManager hatManager = null;
+    private HatGenerator hatManager = null;
 
     [SerializeField]
     private MannequinManager mannequinManager = null;
