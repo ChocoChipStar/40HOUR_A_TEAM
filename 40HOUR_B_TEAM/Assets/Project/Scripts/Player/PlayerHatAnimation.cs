@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerHatAnimation : MonoBehaviour
 {
@@ -19,30 +20,42 @@ public class PlayerHatAnimation : MonoBehaviour
     void Update()
     {
         //Z,X,Cに応じてアニメーション再生
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            PlayerThink(playerNumber, "AnimationDecition");
+            PlayerThink(playerNumber, "AnimationDecition", true);
         }
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKeyUp(KeyCode.Z))
         {
-            PlayerDecition(playerNumber, "AnimationThink");
+            PlayerThink(playerNumber, "AnimationDecition", false);
         }
-        if(Input.GetKey(KeyCode.C)) 
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            PlayerYareYare(playerNumber, "AnimationYareYare");
+            PlayerDecition(playerNumber, "AnimationThink", true);
+        }
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            PlayerDecition(playerNumber, "AnimationThink", false);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            PlayerYareYare(playerNumber, "AnimationYareYare", true);
+        } 
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            PlayerYareYare(playerNumber, "AnimationYareYare", false);
         }
     }
-
-    private void PlayerThink(int animationNumber, string animationName)
+    //アニメーションフラグ管理
+    private void PlayerThink(int animationNumber, string animationName, bool isActive)
     {
-        playerAnimation[animationNumber].SetBool(animationName, true);
+        playerAnimation[animationNumber].SetBool(animationName, isActive);
     }
-    private void PlayerDecition(int animationNumber, string animationNamer)
+    private void PlayerDecition(int animationNumber, string animationNamer, bool isActive)
     {
-        playerAnimation[animationNumber].SetBool(animationNamer, true);
+        playerAnimation[animationNumber].SetBool(animationNamer, isActive);
     }
-    private void PlayerYareYare(int animationNumber, string animationName)
+    private void PlayerYareYare(int animationNumber, string animationName, bool isActive)
     {
-        playerAnimation[animationNumber].SetBool(animationName, true);
+        playerAnimation[animationNumber].SetBool(animationName, isActive);
     }
 }
