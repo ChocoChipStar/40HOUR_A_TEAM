@@ -25,6 +25,16 @@ public class PlayerSoundManager : MonoBehaviour
         audioSource.Play();
     }
 
+    public float SEClipLength()
+    {
+        // Ä¶’†‚ÌAudioClip‚Ì’·‚³‚ğæ“¾
+        if (audioSource.clip != null)
+        {
+            return audioSource.clip.length;
+        }
+        return 0f;
+    }
+
     public void GoodSoundChange()
     {
         audioSource.clip = Playercheck_Good;

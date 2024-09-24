@@ -3445,7 +3445,7 @@ MonoBehaviour:
   - {fileID: 1509795856}
   - {fileID: 866653406}
   - {fileID: 9855832}
-  scores: 05000000080000000400000004000000
+  scores: 05000000080000000600000004000000
 --- !u!4 &2004836687
 Transform:
   m_ObjectHideFlags: 0
