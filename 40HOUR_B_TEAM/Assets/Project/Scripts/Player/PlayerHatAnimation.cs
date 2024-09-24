@@ -20,41 +20,72 @@ public class PlayerHatAnimation : MonoBehaviour
     void Update()
     {
         //Z,X,Cに応じてアニメーション再生
+        //決定
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            PlayerThink(playerNumber, "AnimationDecition", true);
+            PlayerAnimation(playerNumber, "AnimationDecition", true);
         }
         if (Input.GetKeyUp(KeyCode.Z))
         {
-            PlayerThink(playerNumber, "AnimationDecition", false);
+            PlayerAnimation(playerNumber, "AnimationDecition", false);
         }
+        //考える
         if (Input.GetKeyDown(KeyCode.X))
         {
-            PlayerDecition(playerNumber, "AnimationThink", true);
+            PlayerAnimation(playerNumber, "AnimationThink", true);
         }
         if (Input.GetKeyUp(KeyCode.X))
         {
-            PlayerDecition(playerNumber, "AnimationThink", false);
+            PlayerAnimation(playerNumber, "AnimationThink", false);
         }
+        //やれやれ
         if (Input.GetKeyDown(KeyCode.C))
         {
-            PlayerYareYare(playerNumber, "AnimationYareYare", true);
+            PlayerAnimation(playerNumber, "AnimationYareYare", true);
         } 
         if (Input.GetKeyUp(KeyCode.C))
         {
-            PlayerYareYare(playerNumber, "AnimationYareYare", false);
+            PlayerAnimation(playerNumber, "AnimationYareYare", false);
+        }
+        //クールポーズ
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            PlayerAnimation(playerNumber, "AnimationCoolPose", true);
+        }
+        if (Input.GetKeyUp(KeyCode.V))
+        {
+            PlayerAnimation(playerNumber, "AnimationCoolPose", false);
+        }
+        //走る
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            PlayerAnimation(playerNumber, "AnimationRun", true);
+        }
+        if (Input.GetKeyUp(KeyCode.B))
+        {
+            PlayerAnimation(playerNumber, "AnimationRun", false);
+        }
+        //ショック
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            PlayerAnimation(playerNumber, "AnimationShock", true);
+        }
+        if (Input.GetKeyUp(KeyCode.N))
+        {
+            PlayerAnimation(playerNumber, "AnimationShock", false);
+        }
+        //ハッピー
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PlayerAnimation(playerNumber, "AnimationHappy", true);
+        }
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            PlayerAnimation(playerNumber, "AnimationHappy", false);
         }
     }
     //アニメーションフラグ管理
-    private void PlayerThink(int animationNumber, string animationName, bool isActive)
-    {
-        playerAnimation[animationNumber].SetBool(animationName, isActive);
-    }
-    private void PlayerDecition(int animationNumber, string animationNamer, bool isActive)
-    {
-        playerAnimation[animationNumber].SetBool(animationNamer, isActive);
-    }
-    private void PlayerYareYare(int animationNumber, string animationName, bool isActive)
+    private void PlayerAnimation(int animationNumber, string animationName, bool isActive)
     {
         playerAnimation[animationNumber].SetBool(animationName, isActive);
     }
