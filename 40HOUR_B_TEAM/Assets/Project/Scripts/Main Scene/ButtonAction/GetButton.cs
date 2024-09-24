@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using TMPro;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class GetButton : MonoBehaviour
 {
@@ -30,35 +30,39 @@ public class GetButton : MonoBehaviour
     [SerializeField]
     private RectTransform buttonPositionPlus;
 
-    [SerializeField]
-    private TextMeshProUGUI debug;
-
-    private bool getButtonA;
-    private bool getButtonB;
-    private bool getButtonX;
-    private bool getButtonY;
-    private bool getButtonPlus;
-
     private int round;
-    private int getPlayerButton1;
-    //int getPlayerButton2;
-    //int getPlayerButton3;
-    //int getPlayerButton4;
+    int[] getPlayerButton = new int[4];
+
 
     void Start()
     {
-        getButtonA    = false;
-        getButtonB    = false;
-        getButtonX    = false;
-        getButtonY    = false;
-        getButtonPlus = false;
+        //初期化
         round = 0;
-        getPlayerButton1 = 0;
     }
 
     // Update is called once per frame
     public void Update()
     {
+        //ゲームパッド接続確認
+        var gamepad = Gamepad.current;
+        if (gamepad == null)
+        {
+            return;
+        }
+           
+        var padCurrent = Gamepad.all.Count;
+
+        //for (int i = 0; i < padCurrent; i++)
+        //{
+        //    if (Gamepad.all[i].aButton.wasPressedThisFrame)
+        //    {
+        //        if (i == 0)
+        //        {
+        //            Debug.Log("sucsees");
+        //        }
+        //    }
+        //}
+
         //デバッグ用
         if (Input.GetKeyUp(KeyCode.Z))
         {
@@ -73,85 +77,61 @@ public class GetButton : MonoBehaviour
             RoundFinish();
         }
 
-        //debug.text = (round)ToString();
 
         //ゲームパッド入力がされていなかったら
-        if (getPlayerButton1 == 0)
+        for (int i = 0;i < padCurrent;i++)
         {
-            //ボタン感知
-            if (Gamepad.current.aButton.wasPressedThisFrame && !getButtonA)
+            if (getPlayerButton[i] == 0)
             {
-                getButtonA = true;
-                PressButtonA();
-            }
-            if(Gamepad.current.bButton.wasPressedThisFrame && !getButtonB)
-            {
-                getButtonB= true;
-                PressButtonB();
-            }
-            if (Gamepad.current.xButton.wasPressedThisFrame && !getButtonX)
-            {
-                getButtonX = true;
-                PressButtonX();
-            }
-            //ラウンド5以上なら発動しない
-            if(round < 4)
-            {
-                if (Gamepad.current.yButton.wasPressedThisFrame && !getButtonY)
+                //ボタン感知
+                if (Gamepad.all[i].aButton.wasPressedThisFrame)
                 {
-                    getButtonY = true;
-                    PressButtonY();
+                    getPlayerButton[i] = 1;
+                    Debug.Log("Gamepad " + i);
+                    Debug.Log("choose " + getPlayerButton[i]);
                 }
-                //ボタンが押されてないかつ3ラウンド以上ではない
-                if (!getButtonPlus && round < 2)
+                if (Gamepad.all[i].bButton.wasPressedThisFrame)
                 {
-                    //十字ボタンのいずれかが押された
-                    if (Gamepad.current.dpad.up.wasPressedThisFrame || Gamepad.current.dpad.down.wasPressedThisFrame || Gamepad.current.dpad.left.wasPressedThisFrame || Gamepad.current.dpad.right.wasPressedThisFrame)
+                    getPlayerButton[i] = 2;
+                    Debug.Log("Gamepad " + i);
+                    Debug.Log("choose " + getPlayerButton[i]);
+                }
+                if (Gamepad.all[i].xButton.wasPressedThisFrame)
+                {
+                    getPlayerButton[i] = 3;
+                    Debug.Log("Gamepad " + i);
+                    Debug.Log("choose " + getPlayerButton[i]);
+                }
+                //ラウンド5以上なら発動しない
+                if (round < 4)
+                {
+                    if (Gamepad.all[i].yButton.wasPressedThisFrame)
                     {
-                        getButtonPlus = true;
-                        PressButtonPlus();
+                        getPlayerButton[i] = 4;
+                        Debug.Log("Gamepad " + i);
+                        Debug.Log("choose " + getPlayerButton[i]);
+                    }
+                    //ボタンが押されてないかつ3ラウンド以上ではない
+                    if (round < 2)
+                    {
+                        //十字ボタンのいずれかが押された
+                        if (Gamepad.all[i].dpad.up.wasPressedThisFrame || Gamepad.all[i].dpad.down.wasPressedThisFrame || Gamepad.all[i].dpad.left.wasPressedThisFrame || Gamepad.all[i].dpad.right.wasPressedThisFrame)
+                        {
+                            getPlayerButton[i] = 5;
+                            Debug.Log("Gamepad " + i);
+                            Debug.Log("choose " + getPlayerButton[i]);
+                        }
                     }
                 }
             }
         }
-    }
-    //ボタン受付後プレイヤーに数値を代入
-    public void PressButtonA()
-    {
-        getPlayerButton1 = 1;
-        buttonA.enabled = false;
-    }
-    public void PressButtonB()
-    {
-        getPlayerButton1 = 2;
-        buttonB.enabled = false;
-    }
-    public void PressButtonX()
-    {
-        getPlayerButton1 = 3;
-        buttonX.enabled = false;
-    }
-    public void PressButtonY()
-    {
-        getPlayerButton1 = 4;
-        buttonY.enabled = false;
-    }
-    public void PressButtonPlus()
-    {
-        getPlayerButton1 = 5;
-        buttonPlus.enabled = false;
+        
     }
 
     public void RoundFinish()
     {
         //プレイヤー数値初期化
-        getPlayerButton1 = 0;
-        //ボタン入力初期化
-        getButtonA = false;
-        getButtonB = false;
-        getButtonX = false;
-        getButtonY = false;
-        getButtonPlus = false;
+        getPlayerButton = new int[4];
         //ラウンド数に応じて
         if(round < 2)
         {
