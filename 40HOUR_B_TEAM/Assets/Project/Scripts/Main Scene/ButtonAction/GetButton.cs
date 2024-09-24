@@ -5,9 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class GetButton : MonoBehaviour
 {
+    [SerializeField]
+    private RoundCounter roundCounter;
+
     [SerializeField]
     private Image buttonA;
     [SerializeField]
@@ -30,150 +34,143 @@ public class GetButton : MonoBehaviour
     [SerializeField]
     private RectTransform buttonPositionPlus;
 
-    private int round;
-    int[] getPlayerButton = new int[4];
+    private int[] getPlayerButton = new int[4];
 
+    private readonly float[,] ButtonFixXPosition = new float[5, 5];
+
+    private readonly bool[,] ButtonActive = new bool[5,5];
+
+    private readonly float[] ButtonStartPosition = new float[] { 260.0f, 260.0f, 435.0f, 435.0f, 460.0f };
+
+    private readonly float[] ButtonSpacePosition = new float[] { 350.0f, 350.0f, 350.0f, 350.0f, 500.0f };
+
+    private const int ButtonANum = 0;
+    private const int ButtonBNum = 1;
+    private const int ButtonXNum = 2;
+    private const int ButtonYNum = 3;
+    private const int ButtonPlusNum = 4;
+
+    private const float ButtonFixYPosition = 140.0f;
+
+    private const int NonEnterState = 0;
 
     void Start()
     {
-        //初期化
-        round = 0;
+        for(int i = 0; i < HatData.RoundMax; i++)
+        {
+            for(int j = 0; j < HatData.RoundMax; j++)
+            {
+                ButtonFixXPosition[i,j] = ButtonStartPosition[i] + (j * ButtonSpacePosition[i]);
+            }
+        }
+
+        ButtonActive[0, 0] = true;
+        ButtonActive[0, 1] = true;
+        ButtonActive[0, 2] = true;
+        ButtonActive[0, 3] = true;
+        ButtonActive[0, 4] = true;
+
+        ButtonActive[1, 0] = true;
+        ButtonActive[1, 1] = true;
+        ButtonActive[1, 2] = true;
+        ButtonActive[1, 3] = true;
+        ButtonActive[1, 4] = true;
+
+        ButtonActive[2, 0] = true;
+        ButtonActive[2, 1] = true;
+        ButtonActive[2, 2] = true;
+        ButtonActive[2, 3] = true;
+        ButtonActive[2, 4] = false;
+
+        ButtonActive[3, 0] = true;
+        ButtonActive[3, 1] = true;
+        ButtonActive[3, 2] = true;
+        ButtonActive[3, 3] = true;
+        ButtonActive[3, 4] = false;
+
+        ButtonActive[4, 0] = true;
+        ButtonActive[4, 1] = true;
+        ButtonActive[4, 2] = true;
+        ButtonActive[4, 3] = false;
+        ButtonActive[4, 4] = false;
     }
 
-    // Update is called once per frame
     public void Update()
     {
         //ゲームパッド接続確認
-        var gamepad = Gamepad.current;
-        if (gamepad == null)
+        if (Gamepad.current == null)
         {
             return;
         }
            
-        var padCurrent = Gamepad.all.Count;
 
-        //for (int i = 0; i < padCurrent; i++)
-        //{
-        //    if (Gamepad.all[i].aButton.wasPressedThisFrame)
-        //    {
-        //        if (i == 0)
-        //        {
-        //            Debug.Log("sucsees");
-        //        }
-        //    }
-        //}
-
-        //デバッグ用
-        if (Input.GetKeyUp(KeyCode.Z))
-        {
-            round++;
-        }
-        if (Input.GetKeyUp(KeyCode.X))
-        {
-            round--;
-        }
         if (Input.GetKeyUp(KeyCode.R))
         {
-            RoundFinish();
+            RelocatingButton(roundCounter.GetCurrentRound());
         }
 
-
-        //ゲームパッド入力がされていなかったら
+        var padCurrent = Gamepad.all.Count;
         for (int i = 0;i < padCurrent;i++)
         {
-            if (getPlayerButton[i] == 0)
+            if (getPlayerButton[i] != NonEnterState)
             {
-                //ボタン感知
-                if (Gamepad.all[i].aButton.wasPressedThisFrame)
-                {
-                    getPlayerButton[i] = 1;
-                    Debug.Log("Gamepad " + i);
-                    Debug.Log("choose " + getPlayerButton[i]);
-                }
-                if (Gamepad.all[i].bButton.wasPressedThisFrame)
-                {
-                    getPlayerButton[i] = 2;
-                    Debug.Log("Gamepad " + i);
-                    Debug.Log("choose " + getPlayerButton[i]);
-                }
-                if (Gamepad.all[i].xButton.wasPressedThisFrame)
-                {
-                    getPlayerButton[i] = 3;
-                    Debug.Log("Gamepad " + i);
-                    Debug.Log("choose " + getPlayerButton[i]);
-                }
-                //ラウンド5以上なら発動しない
-                if (round < 4)
-                {
-                    if (Gamepad.all[i].yButton.wasPressedThisFrame)
-                    {
-                        getPlayerButton[i] = 4;
-                        Debug.Log("Gamepad " + i);
-                        Debug.Log("choose " + getPlayerButton[i]);
-                    }
-                    //ボタンが押されてないかつ3ラウンド以上ではない
-                    if (round < 2)
-                    {
-                        //十字ボタンのいずれかが押された
-                        if (Gamepad.all[i].dpad.up.wasPressedThisFrame || Gamepad.all[i].dpad.down.wasPressedThisFrame || Gamepad.all[i].dpad.left.wasPressedThisFrame || Gamepad.all[i].dpad.right.wasPressedThisFrame)
-                        {
-                            getPlayerButton[i] = 5;
-                            Debug.Log("Gamepad " + i);
-                            Debug.Log("choose " + getPlayerButton[i]);
-                        }
-                    }
-                }
+                return;
             }
+
+            SurveyInputButtons(i);
         }
-        
     }
 
-    public void RoundFinish()
+    private void SurveyInputButtons(int surveyValue)
     {
-        //プレイヤー数値初期化
-        getPlayerButton = new int[4];
-        //ラウンド数に応じて
-        if(round < 2)
+        if (Gamepad.all[surveyValue].aButton.wasPressedThisFrame)
         {
-            //位置調整
-            buttonPositionA.position    = new Vector3( 360, 140, 0);
-            buttonPositionB.position    = new Vector3( 660, 140, 0);
-            buttonPositionX.position    = new Vector3( 960, 140, 0);
-            buttonPositionY.position    = new Vector3(1260, 140, 0);
-            buttonPositionPlus.position = new Vector3(1560, 140, 0);
-            //表示
-            buttonA.enabled    = true;
-            buttonB.enabled    = true;
-            buttonX.enabled    = true;
-            buttonY.enabled    = true;
-            buttonPlus.enabled = true;
+            getPlayerButton[surveyValue] = ButtonANum;
         }
-        else if(round < 4)
+        if (Gamepad.all[surveyValue].bButton.wasPressedThisFrame)
         {
-            //位置調整
-            buttonPositionA.position = new Vector3( 510, 140, 0);
-            buttonPositionB.position = new Vector3( 810, 140, 0);
-            buttonPositionX.position = new Vector3(1110 , 140, 0);
-            buttonPositionY.position = new Vector3(1410 , 140, 0);
-            //表示
-            buttonA.enabled    = true;
-            buttonB.enabled    = true;
-            buttonX.enabled    = true;
-            buttonY.enabled    = true;
-            buttonPlus.enabled = false;
+            getPlayerButton[surveyValue] = ButtonBNum;
         }
-        else
+        if (Gamepad.all[surveyValue].xButton.wasPressedThisFrame)
         {
-            //位置調整
-            buttonPositionA.position = new Vector3( 660, 140, 0);
-            buttonPositionB.position = new Vector3( 960, 140, 0);
-            buttonPositionX.position = new Vector3(1260, 140, 0);
-            //表示
-            buttonA.enabled    = true;
-            buttonB.enabled    = true;
-            buttonX.enabled    = true;
-            buttonY.enabled    = false;
-            buttonPlus.enabled = false;
+            getPlayerButton[surveyValue] = ButtonXNum;
         }
+
+        //ラウンド5(5を含む)以上ならリターン
+        if (roundCounter.GetCurrentRound() > 4)
+        {
+            return;
+        }
+
+        if (Gamepad.all[surveyValue].yButton.wasPressedThisFrame)
+        {
+            getPlayerButton[surveyValue] = ButtonYNum;
+        }
+
+        // ラウンド3(3を含まない)以上ならリターン
+        if (roundCounter.GetCurrentRound() >= 2)
+        {
+            return;
+        }
+
+        if (Gamepad.all[surveyValue].dpad.up.wasPressedThisFrame || Gamepad.all[surveyValue].dpad.down.wasPressedThisFrame ||
+            Gamepad.all[surveyValue].dpad.left.wasPressedThisFrame || Gamepad.all[surveyValue].dpad.right.wasPressedThisFrame)
+        {
+            getPlayerButton[surveyValue] = ButtonPlusNum;
+        }
+    }
+    private void RelocatingButton(int currentRound)
+    {
+        buttonPositionA.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonANum],    ButtonFixYPosition, 0);
+        buttonPositionB.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonBNum],    ButtonFixYPosition, 0);
+        buttonPositionX.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonXNum],    ButtonFixYPosition, 0);
+        buttonPositionY.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonYNum],    ButtonFixYPosition, 0);
+        buttonPositionPlus.position = new Vector3(ButtonFixXPosition[currentRound, ButtonPlusNum], ButtonFixYPosition, 0);
+
+        buttonA.enabled    = ButtonActive[currentRound, ButtonANum];
+        buttonB.enabled    = ButtonActive[currentRound, ButtonBNum];
+        buttonX.enabled    = ButtonActive[currentRound, ButtonXNum];
+        buttonY.enabled    = ButtonActive[currentRound, ButtonYNum];
+        buttonPlus.enabled = ButtonActive[currentRound, ButtonPlusNum];
     }
 }
