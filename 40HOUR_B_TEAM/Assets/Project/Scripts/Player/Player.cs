@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         }
         if(gamepads.xButton.wasPressedThisFrame)
         {
-            animator.Play("anime_4th");
+            animator.Play("anime_Decition");
         }
         if (gamepads.yButton.wasPressedThisFrame)
         {

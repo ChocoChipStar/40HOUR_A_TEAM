@@ -187,7 +187,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anime_4th
+  m_Name: anime_Decition
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -201,7 +201,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 3749480012328393592, guid: d9ce54ca572bf2143a9b6d32a42e600a, type: 3}
+  m_Motion: {fileID: -727522627317350316, guid: 9d154caf278c6c34bb46b7cf99036e58, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
