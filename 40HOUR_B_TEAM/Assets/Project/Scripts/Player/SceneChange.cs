@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
@@ -9,8 +10,15 @@ public class SceneChange : MonoBehaviour
 
     private bool sceneChange;
 
+    private bool[] letStart = new bool[4];
+    private Gamepad gamepads;
+
     void Start()
     {
+        for (int i = 0; i < player.Length; i++)
+        {
+            letStart[i] = false;
+        }
         sceneChange = false;
     }
 
@@ -19,7 +27,14 @@ public class SceneChange : MonoBehaviour
     {
         for (int i = 0; i < player.Length; i++)
         {
-            if (player[i].OKflg == false)
+            gamepads = Gamepad.all[i];
+
+            if (gamepads.leftShoulder.isPressed && gamepads.rightShoulder.isPressed)
+            {
+                letStart[i] = true;
+            }
+
+            if (letStart[i] == false)
             {
                 sceneChange = true;
                 continue;
