@@ -38,7 +38,10 @@ public class GameMaster : MonoBehaviour
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
+        {
             mannequinManager.GenerateMannequin(roundCounter.GetCurrentRound());
+            hatManager.LineUpHat(roundCounter.GetCurrentRound());
+        }
     }
 
     private IEnumerator DrawRoundText()
@@ -89,8 +92,9 @@ public class GameMaster : MonoBehaviour
 
         // マネキンを再配置
         mannequinManager.GenerateMannequin(roundCounter.GetCurrentRound());
-        
+
         // 帽子をランダム再生成
+        hatManager.LineUpHat(roundCounter.GetCurrentRound());
 
 
         // プレイヤーが前に移動してくるアニメーション
