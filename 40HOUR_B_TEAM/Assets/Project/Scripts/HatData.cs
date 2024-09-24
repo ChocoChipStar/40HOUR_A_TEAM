@@ -12,7 +12,9 @@ public static class HatData
 
     public static readonly float[,] GenerateFixXPosition;
 
-    public const float GenerateFixYPosition = 4.5f;
+    public const float GenerateMannequinFixYPosition = 3.85f;
+
+    public const float GenerateHatFixYPosition = 0.8f;
 
     public const float GenerateFixZPosition = -60.0f;
 

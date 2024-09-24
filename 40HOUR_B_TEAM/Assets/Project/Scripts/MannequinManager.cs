@@ -29,7 +29,7 @@ public class MannequinManager : MonoBehaviour
         for(int i = 0; i < GenerateCountInRound[currentRound]; i++)
         {
             var instance = Instantiate(mannequin, parentTrans);
-            instance.transform.position = new Vector3(HatData.GenerateFixXPosition[currentRound,i], HatData.GenerateFixYPosition, HatData.GenerateFixZPosition);
+            instance.transform.position = new Vector3(HatData.GenerateFixXPosition[currentRound,i], HatData.GenerateMannequinFixYPosition, HatData.GenerateFixZPosition);
             instance.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
         }
     }

@@ -19,6 +19,8 @@ public class HatManager : MonoBehaviour
 
     private List<int> hatNumber = new List<int>();
 
+    private const float FrontAngle = 180.0f;
+
     private void Start()
     {
         ResetHatData(0);
@@ -67,7 +69,8 @@ public class HatManager : MonoBehaviour
 
         for(int i = 0; i < generateHats.Count; i++)
         {
-            var instance = Instantiate(generateHats[i]);
+            var position = new Vector3(HatData.GenerateFixXPosition[currentRound, i], HatData.GenerateHatFixYPosition, HatData.GenerateFixZPosition);
+            var instance = Instantiate(generateHats[i], position, Quaternion.Euler(0.0f, FrontAngle, 0.0f));
             locatedHat.Add(instance);
         }
     }
