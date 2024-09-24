@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHatAnimation : MonoBehaviour
@@ -10,16 +5,9 @@ public class PlayerHatAnimation : MonoBehaviour
 
     [SerializeField]
     private Animator[] playerAnimation;
-    //[SerializeField]
-    //private Animator playerAnimation2;
-    //[SerializeField]
-    //private Animator playerAnimation3;
-    //[SerializeField]
-    //private Animator playerAnimation4;
 
     [SerializeField]
-    int playerNomber;
-
+    int playerNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -33,28 +21,28 @@ public class PlayerHatAnimation : MonoBehaviour
         //Z,X,Cに応じてアニメーション再生
         if (Input.GetKey(KeyCode.Z))
         {
-            PlayerThink(playerNomber, "AnimationDecition");
+            PlayerThink(playerNumber, "AnimationDecition");
         }
         if (Input.GetKey(KeyCode.X))
         {
-            PlayerDecition(playerNomber, "AnimationThink");
+            PlayerDecition(playerNumber, "AnimationThink");
         }
         if(Input.GetKey(KeyCode.C)) 
         {
-            PlayerYareYare(playerNomber, "AnimationYareYare");
+            PlayerYareYare(playerNumber, "AnimationYareYare");
         }
     }
 
-    private void PlayerThink(int animationNomber, string animationName)
+    private void PlayerThink(int animationNumber, string animationName)
     {
-        playerAnimation[animationNomber].SetBool(animationName, true);
+        playerAnimation[animationNumber].SetBool(animationName, true);
     }
-    private void PlayerDecition(int animationNomber, string animationNamer)
+    private void PlayerDecition(int animationNumber, string animationNamer)
     {
-        playerAnimation[animationNomber].SetBool(animationNamer, true);
+        playerAnimation[animationNumber].SetBool(animationNamer, true);
     }
-    private void PlayerYareYare(int animationNomber, string animationName)
+    private void PlayerYareYare(int animationNumber, string animationName)
     {
-        playerAnimation[animationNomber].SetBool(animationName, true);
+        playerAnimation[animationNumber].SetBool(animationName, true);
     }
 }
