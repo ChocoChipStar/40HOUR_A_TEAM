@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 using System.Xml.Serialization;
 
 public class ResultSelectScript : MonoBehaviour
@@ -56,6 +57,9 @@ public class ResultSelectScript : MonoBehaviour
     private float fadeInA = 0.05f;    //20フレームでフェードイン
     private float fadeOutA = 0.0167f;  //60フレームで暗転
 
+    //ファンファーレを鳴らすまでの待ち時間
+    private const float StayTime = 0.5f;
+
     //ボタン非表示
     void Start()
     {
@@ -64,8 +68,16 @@ public class ResultSelectScript : MonoBehaviour
         retryImage.enabled = false;
         titleImage.enabled = false;
         isFadeIn = true;
-        fanfareSound.Play();
         Invoke("ButtonActive", 4);
+        StartCoroutine(FanFare());
+    }
+
+    private IEnumerator FanFare()
+    {
+        yield return new WaitForSeconds(StayTime);
+
+        fanfareSound.Play();
+
     }
 
     //ボタンを表示
