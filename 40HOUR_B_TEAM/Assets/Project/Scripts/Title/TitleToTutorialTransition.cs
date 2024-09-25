@@ -15,12 +15,17 @@ public class TitleToTutorialTransition : MonoBehaviour
     [SerializeField]
     private AudioSource titleSE;
 
-    bool changeEffect;
+    [SerializeField]
+    private Animator titleButtonAnim;
+
+    bool changeEffect = false;
+
+    bool startFlag = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        changeEffect = false;
+       
     }
 
     // Update is called once per frame
@@ -29,7 +34,6 @@ public class TitleToTutorialTransition : MonoBehaviour
         // 現在の入力情報
         var keyboardCurrent = Keyboard.current;
         var gamepadCurrent = Gamepad.current;
-        var buttonB = Gamepad.current.bButton.wasPressedThisFrame;
         var buttonA = Gamepad.current.aButton.wasPressedThisFrame;
 
 
@@ -49,26 +53,21 @@ public class TitleToTutorialTransition : MonoBehaviour
             return;
         }
 
-        Debug.Log(keyboardCurrent.enterKey.wasPressedThisFrame);
-        Debug.Log(buttonB);
+      
 
-        if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonB)
+        if (keyboardCurrent.enterKey.wasPressedThisFrame && !startFlag || buttonA && !startFlag)
         {
 
             //enterキーかコントローラーのBボタンが押された瞬間に
             //エフェクトを再生
             titleSE.Play();
-            changeEffect = true;
-            Debug.Log(changeEffect);
+            titleButtonAnim.SetBool("Start", true);
+            changeEffect = true; 
+            startFlag = true;
+            
 
         }
-        if (keyboardCurrent.spaceKey.wasPressedThisFrame || buttonA)
-        {
-            //spaceキーかントローラーのAボタンが押された瞬間に
-            //アプリケーションを閉じる
-            titleSE.Play();
-            Application.Quit();
-        }
+        
         
         //エフェクト再生後メインシーンをロード
         if (scenechangeEffect.switchCount == 59)
