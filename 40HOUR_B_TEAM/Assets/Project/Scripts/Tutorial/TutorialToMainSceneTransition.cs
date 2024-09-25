@@ -17,8 +17,8 @@ public class TutorialToMainSceneTransition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        alpha = 0.002f;
+        
+        alpha = 0.034f; //30フレームで暗転
         fadeOutFlag = false;
     }
 
@@ -51,14 +51,8 @@ public class TutorialToMainSceneTransition : MonoBehaviour
             //フェードアウト開始
             fadeOutFlag = true;
         }
+        
 
-        if (fadeOutFlag == true && fadeOut_image.color.a < 1)
-        {
-            //フェードアウト
-            FadeOut();
-        }
-
-            
         if (fadeOut_image.color.a >= 1)
         {
             //画面が暗くなったらメインシーンをロード
@@ -68,9 +62,18 @@ public class TutorialToMainSceneTransition : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        if (fadeOutFlag == true && fadeOut_image.color.a < 1)
+        {
+            //フェードアウト
+            FadeOut();
+        }
+    }
+
     void FadeOut()
     {
-        //イメージの透明度を少しずつ下げる
+        //30フレームで完全に暗転する。
         fadeOut_image.color += new Color(0, 0, 0, alpha);
 
     }
