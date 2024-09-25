@@ -914,7 +914,6 @@ GameObject:
   - component: {fileID: 870414201357320980}
   - component: {fileID: 2368302909208682647}
   - component: {fileID: 1871896510838893757}
-  - component: {fileID: 4034661363826941330}
   m_Layer: 5
   m_Name: PlayerAddScore
   m_TagString: Untagged
@@ -1008,30 +1007,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4034661363826941330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4889728726404912103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04a96f2cb7da3f148902d8e68ba55f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1Add1Score: {fileID: 4729174876466312413}
-  player1Add2Score: {fileID: 393392702936830092}
-  player1Add3Score: {fileID: 3033883674302654472}
-  player2Add1Score: {fileID: 5977220073246292799}
-  player2Add2Score: {fileID: 2180264304638195303}
-  player2Add3Score: {fileID: 3019982706872784788}
-  player3Add1Score: {fileID: 2939714674959338905}
-  player3Add2Score: {fileID: 2131883126922382908}
-  player3Add3Score: {fileID: 6007647971566613237}
-  player4Add1Score: {fileID: 1751266675720062353}
-  player4Add2Score: {fileID: 5364147427100954971}
-  player4Add3Score: {fileID: 72675879297742878}
 --- !u!1 &5207806564797609667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,6 +1092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2077767229983734094}
   - component: {fileID: 2805342535453752504}
+  - component: {fileID: 4456885513897081800}
   m_Layer: 0
   m_Name: PlayerScore
   m_TagString: Untagged
@@ -1154,11 +1130,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6256dc014af87494faf71c6886ae3d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textScorePlayer1: {fileID: 5810513730051110688}
-  textScorePlayer2: {fileID: 4152385042901254739}
-  textScorePlayer3: {fileID: 6210800925820312429}
-  textScorePlayer4: {fileID: 1266883848253966006}
-  addScore: {fileID: 4034661363826941330}
+  currentScoreText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  drawScoreImage: {fileID: 0}
+  inputButtonManager: {fileID: 0}
+  hatGenerator: {fileID: 0}
+--- !u!114 &4456885513897081800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254961989227654157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04a96f2cb7da3f148902d8e68ba55f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNum: []
 --- !u!1 &5849259982365642604
 GameObject:
   m_ObjectHideFlags: 0

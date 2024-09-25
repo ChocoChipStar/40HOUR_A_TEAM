@@ -8,6 +8,8 @@ public static class HatData
 
     public static readonly int[] GenerateCountInRound = new int[] { 4, 4, 3, 2, 1 };
 
+    public static readonly int[] RoundHatCount = new int[] { 5, 5, 4, 4, 3 };
+
     public static readonly Vector3[,] GeneratePosition = new Vector3[,] { };
 
     public static readonly float[,] GenerateFixXPosition;
@@ -21,6 +23,10 @@ public static class HatData
     public const int RoundMax = 5;
 
     public const int HatMax = 10;
+
+    public const string EaglesHatName = "EaglesHat";
+
+    public const string KingHatName = "KingHat";
 
     static HatData()
     {
