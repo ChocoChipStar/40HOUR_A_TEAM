@@ -39,6 +39,8 @@ public class ResultSelectScript : MonoBehaviour
     [SerializeField]
     private Image fadeOutImage;
 
+    Animator resultButtonAnimator = null;
+
     //セレクトフラグ
     public bool isSelect = false;
 
@@ -68,6 +70,7 @@ public class ResultSelectScript : MonoBehaviour
         retryImage.enabled = false;
         titleImage.enabled = false;
         isFadeIn = true;
+        resultButtonAnimator = GetComponent<Animator>();
         Invoke("ButtonActive", 4);
         StartCoroutine(FanFare());
     }
@@ -105,10 +108,14 @@ public class ResultSelectScript : MonoBehaviour
         if(Gamepad.current.leftStick.ReadValue().x > 0.2f && !isSelect)
         {
             leftStick = true;
+            resultButtonAnimator.SetBool("onRight", false);
+            resultButtonAnimator.SetBool("onLeft", true);
         }
         else if(Gamepad.current.leftStick.ReadValue().x < -0.2f && !isSelect)
         {
             rightStick = true;
+            resultButtonAnimator.SetBool("onRight", true);
+            resultButtonAnimator.SetBool("onLeft", false);
         }
         else
         {
@@ -174,6 +181,7 @@ public class ResultSelectScript : MonoBehaviour
             isSelect = true;
             isTitle = true;
             isFadeIn = false;
+            resultButtonAnimator.SetBool("decideTitle", true);
         }
        
     }
@@ -192,7 +200,8 @@ public class ResultSelectScript : MonoBehaviour
             isSelect = true;
             isRetry = true;
             isFadeIn = false;
-                       
+            resultButtonAnimator.SetBool("decideRetry", true);
+
         }
     }
    
