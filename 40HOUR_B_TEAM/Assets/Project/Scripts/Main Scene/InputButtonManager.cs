@@ -121,6 +121,7 @@ public class InputButtonManager : MonoBehaviour
             if (InputButtonNum[i] != NonEnterState)
             {
                 Debug.Log(InputButtonNum[i]);
+
                 selectedCount++;
                 if(selectedCount == padCurrent)
                 {
