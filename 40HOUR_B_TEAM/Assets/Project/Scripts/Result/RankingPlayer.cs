@@ -26,6 +26,8 @@ public class RankingPlayer : MonoBehaviour
 
     private int playerCount;
 
+    private const float StayTime = 0.5f;
+
     void Start()
     {
         playerCount = 0;
@@ -56,6 +58,13 @@ public class RankingPlayer : MonoBehaviour
 
     public void PlayerRankReaction(int rank)
     {
+        StartCoroutine(RankStay(rank));
+    }
+
+    private IEnumerator RankStay(int rank)
+    {
+        yield return new WaitForSeconds(StayTime);
+
         if (rank == 1)
         {
             material.mainTexture = smileLTexture;
