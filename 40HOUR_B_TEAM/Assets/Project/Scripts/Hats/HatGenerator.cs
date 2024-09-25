@@ -15,7 +15,7 @@ public class HatGenerator : MonoBehaviour
 
     private List<GameObject> generateHats = new List<GameObject>();
 
-    private List<GameObject> locatedHat = new List<GameObject>();
+    public readonly List<GameObject> locatedHat = new List<GameObject>();
 
     private List<int> hatNumber = new List<int>();
 

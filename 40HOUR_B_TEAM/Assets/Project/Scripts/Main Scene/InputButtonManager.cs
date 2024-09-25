@@ -90,7 +90,7 @@ public class InputButtonManager : MonoBehaviour
         ButtonActive[4, 4] = false;
     }
 
-    public void Update()
+    private void Update()
     {
         //ゲームパッド接続確認
         if (Gamepad.current == null)
@@ -98,14 +98,7 @@ public class InputButtonManager : MonoBehaviour
             return;
         }
            
-
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            RelocatingButton(roundCounter.GetCurrentRound());
-        }
-
         var padCurrent = Gamepad.all.Count;
-        Debug.Log(padCurrent);
         for (int i = 0;i < padCurrent;i++)
         {
             if (InputButtonNum[i] != NonEnterState)
@@ -115,6 +108,15 @@ public class InputButtonManager : MonoBehaviour
 
             SurveyInputButtons(i);
         }
+    }
+
+    public void DrawButtonUI()
+    {
+        buttonA.enabled = true;
+        buttonB.enabled = true;
+        buttonX.enabled = true;
+        buttonY.enabled = true;
+        buttonPlus.enabled = true;
     }
 
     private void SurveyInputButtons(int surveyValue)
@@ -155,7 +157,7 @@ public class InputButtonManager : MonoBehaviour
             InputButtonNum[surveyValue] = ButtonPlusNum;
         }
     }
-    private void RelocatingButton(int currentRound)
+    public void RelocatingButton(int currentRound)
     {
         buttonPositionA.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonANum],    ButtonFixYPosition, 0);
         buttonPositionB.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonBNum],    ButtonFixYPosition, 0);

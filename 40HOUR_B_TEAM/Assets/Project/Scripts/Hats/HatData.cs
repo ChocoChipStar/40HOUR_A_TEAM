@@ -22,6 +22,10 @@ public static class HatData
 
     public const int HatMax = 10;
 
+    public const string EaglesHatName = "EaglesHat";
+
+    public const string KingHatName = "KingHat";
+
     static HatData()
     {
         KingHatGenerateRound = 3;
