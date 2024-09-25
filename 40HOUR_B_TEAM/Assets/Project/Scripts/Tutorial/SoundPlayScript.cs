@@ -23,7 +23,7 @@ public class SoundPlayScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Gamepad.current.bButton.wasPressedThisFrame && !isSelect)
+        if (Gamepad.current.aButton.wasPressedThisFrame && !isSelect)
         {
             tutorialSoundEffect.Play();
             isSelect = true;
