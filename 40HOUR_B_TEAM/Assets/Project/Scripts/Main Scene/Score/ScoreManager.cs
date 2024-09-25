@@ -45,21 +45,13 @@ public class ScoreManager : MonoBehaviour
         {
             ConvertButtonNumToScore();
         }
-
-        if(Keyboard.current.hKey.wasPressedThisFrame)
-        {
-            for (int i = 0; i < PlayerData.PlayerMax; i++)
-            {
-                playerScores[i] = Addscore(i, playerScores[i], addScores[i]);
-                SetScoreText(i, playerScores[i]);
-            }
-        }
     }
 
-    private void Addscore(int playerNum, int currentScore, int addValue)
+    private void AddScore(int playerNum)
     {
         drawScoreImage.SetActiveImage(playerNum, inputButtonManager.InputButtonNum[playerNum], true);
-        playerScores[playerNum] =  currentScore + addValue;
+        playerScores[playerNum] = playerScores[playerNum] + addScores[playerNum];
+        SetScoreText(playerNum, playerScores[playerNum]);
     }
 
     private void SetScoreText(int playerNum, int currentScore)
