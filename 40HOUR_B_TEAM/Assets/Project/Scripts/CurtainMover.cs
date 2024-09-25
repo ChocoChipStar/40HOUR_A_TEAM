@@ -24,19 +24,6 @@ public class CurtainMover : MonoBehaviour
         closeMovementum = (CurtainClosedPositionY - CurtainOpenPositionY) / CurtainCloseFrame;
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.iKey.wasPressedThisFrame)
-        {
-            isOpen = true;
-        }
-
-        if(Keyboard.current.oKey.wasPressedThisFrame)
-        {
-            isClose = true;
-        }
-    }
-
     private void FixedUpdate()
     {
         if(isOpen)

@@ -66,8 +66,8 @@ public class GameMaster : MonoBehaviour
 
         if(inputButtonManager.isAllPlayerSelectedButton)
         {
-            StartCoroutine(MovementRoom());
             inputButtonManager.isAllPlayerSelectedButton = false;
+            StartCoroutine(HatShowTime());
         }
 
         for(int i = 0; i < PlayerData.PlayerMax; i++)
@@ -135,11 +135,11 @@ public class GameMaster : MonoBehaviour
         yield return new WaitForSeconds(CloseCurtainTime);
 
         // カーテンを開く待機時間
-        for(int i = 0; i < PlayerData.PlayerMax; i++)
+        for (int i = 0; i < PlayerData.PlayerMax; i++)
         {
             curtainMover[i].isOpen = true;
         }
-        
+
         yield return new WaitForSeconds(OpenCurtainTime);
 
         // 決めポーズアニメーション

@@ -96,11 +96,6 @@ public class InputButtonManager : MonoBehaviour
 
     private void Update()
     {
-        if(Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            ResetInputButtonData();
-        }
-
         //ゲームパッド接続確認
         if (Gamepad.current == null)
         {
@@ -112,7 +107,9 @@ public class InputButtonManager : MonoBehaviour
             return;
         }
 
-        if(isAllPlayerSelectedButton)
+        Debug.Log(isAllPlayerSelectedButton);
+       
+        if(isAllPlayerSelectedButton == true)
         {
             return;
         }
@@ -123,6 +120,7 @@ public class InputButtonManager : MonoBehaviour
         {
             if (InputButtonNum[i] != NonEnterState)
             {
+                Debug.Log(InputButtonNum[i]);
                 selectedCount++;
                 if(selectedCount == padCurrent)
                 {
@@ -209,7 +207,5 @@ public class InputButtonManager : MonoBehaviour
         {
             InputButtonNum[i] = 0;
         }
-
-        isAllPlayerSelectedButton = false;
     }
 }
