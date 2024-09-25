@@ -1394,8 +1394,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundCounter: {fileID: 1425406574}
   inputButtonManager: {fileID: 659543683}
+  scoreManager: {fileID: 1890659580}
   hatManager: {fileID: 215583638}
-  hatCover: {fileID: 0}
+  hatCover: {fileID: 215583639}
   mannequinManager: {fileID: 948359614}
   playerMover:
   - {fileID: 348415562}
@@ -1961,6 +1962,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 401110298}
   m_SourcePrefab: {fileID: 100100000, guid: e764e5707e2063645b716875a6939907, type: 3}
+--- !u!114 &1890659580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2805342535453752504, guid: e764e5707e2063645b716875a6939907, type: 3}
+  m_PrefabInstance: {fileID: 1890659579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6256dc014af87494faf71c6886ae3d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2035008343
 GameObject:
   m_ObjectHideFlags: 0

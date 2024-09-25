@@ -35,7 +35,7 @@ public class GameMaster : MonoBehaviour
 
     private const float CloseCurtainTime = 1.4f;
 
-    private const float OpenCurtainTime = 0.333f;
+    private const float OpenCurtainTime = 0.25f;
 
     private const float ShowcaseMovementTime = 0.75f;
 
@@ -51,18 +51,14 @@ public class GameMaster : MonoBehaviour
     {
         // マネキン生成
         mannequinManager.GenerateMannequin(roundCounter.GetCurrentRound());
+        // ぼうし生成
+        hatManager.LineUpHat(roundCounter.GetCurrentRound());
 
         StartCoroutine(DrawRoundText());
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            mannequinManager.GenerateMannequin(roundCounter.GetCurrentRound());
-            hatManager.LineUpHat(roundCounter.GetCurrentRound());
-        }
-
         if(Input.GetKeyDown(KeyCode.Return))
         {
             StartCoroutine(HatShowTime());
@@ -70,8 +66,21 @@ public class GameMaster : MonoBehaviour
 
         if(inputButtonManager.isAllPlayerSelectedButton)
         {
-            MovementRoom();
+            StartCoroutine(MovementRoom());
             inputButtonManager.isAllPlayerSelectedButton = false;
+        }
+
+        for(int i = 0; i < PlayerData.PlayerMax; i++)
+        {
+            var readyCount = 0;
+            if (playerMover[i].isThinkingToRoom)
+            {
+                readyCount++;
+                if(readyCount == PlayerData.PlayerMax)
+                {
+                    StartCoroutine(HatShowTime());
+                }
+            }
         }
     }
 
@@ -160,6 +169,10 @@ public class GameMaster : MonoBehaviour
 
 
         // 加算スコアテキスト表示
+        for (int i = 0; i < PlayerData.PlayerMax; i++)
+        {
+            scoreManager.AddScore(i);
+        }
 
 
         yield return new WaitForSeconds(ReactionTime);

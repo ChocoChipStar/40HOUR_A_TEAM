@@ -22,7 +22,7 @@ public class HatCover : MonoBehaviour
         for (int i = 0; i < PlayerData.PlayerMax; i++)
         {
             // 生成されたぼうしの中からプレイヤー毎が選択したぼうしを再生成する
-            var instance = Instantiate(hatGenerator.locatedHat[inputButtonManager.InputButtonNum[i]]);
+            var instance = Instantiate(hatGenerator.locatedHat[inputButtonManager.InputButtonNum[i] - 1]);
 
             instance.transform.SetParent(playerObj[i].transform);
 

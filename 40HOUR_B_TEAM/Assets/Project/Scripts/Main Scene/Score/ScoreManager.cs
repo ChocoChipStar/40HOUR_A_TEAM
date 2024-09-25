@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
 
     private List<int> addScores = new List<int>();
 
+    private const int NoneHat = 0;
     private const int NormalHatScore = 1;
     private const int EaglesHatScore = 2;
     private const int KingHatScore = 3;
@@ -47,17 +48,17 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void AddScore(int playerNum)
+    private void SetScoreText(int playerNum, int currentScore)
+    {
+        currentScoreText[playerNum].text = currentScore.ToString();
+    }
+
+    public void AddScore(int playerNum)
     {
         drawScoreImage.SetActiveImage(playerNum, inputButtonManager.InputButtonNum[playerNum], true);
         playerScores[playerNum] = playerScores[playerNum] + addScores[playerNum];
         SetScoreText(playerNum, playerScores[playerNum]);
     }
-
-    private void SetScoreText(int playerNum, int currentScore)
-    {
-        currentScoreText[playerNum].text = currentScore.ToString();
-    }    
 
     /// <summary>
     /// プレイヤーが選択したボタンがスコア何点のぼうしかを確認し、変数に記録します。
@@ -78,7 +79,13 @@ public class ScoreManager : MonoBehaviour
                 continue;
             }
 
-            addScores[i] = NormalHatScore;
+            if (inputButtonManager.InputButtonNum[i] != 0)
+            {
+                addScores[i] = NormalHatScore;
+                continue;
+            }
+            
+            addScores[i] = NoneHat;
         }
         
     }
