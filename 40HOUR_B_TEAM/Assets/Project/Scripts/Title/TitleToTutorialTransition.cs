@@ -15,6 +15,9 @@ public class TitleToTutorialTransition : MonoBehaviour
     [SerializeField]
     private AudioSource titleSE;
 
+    [SerializeField]
+    private Animator titleButtonAnim;
+
     bool changeEffect;
 
     // Start is called before the first frame update
@@ -58,8 +61,9 @@ public class TitleToTutorialTransition : MonoBehaviour
             //enterキーかコントローラーのBボタンが押された瞬間に
             //エフェクトを再生
             titleSE.Play();
+            titleButtonAnim.SetBool("Start", true);
             changeEffect = true;
-            Debug.Log(changeEffect);
+            
 
         }
         if (keyboardCurrent.spaceKey.wasPressedThisFrame || buttonA)
