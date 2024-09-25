@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] int gamePadCount;
     [SerializeField] SpriteRenderer okTextSprite;
     [SerializeField] Animator animator;
+    [SerializeField] Animator okButtonAnimator;
     [SerializeField] PlayerSoundManager soundManager;
     private Gamepad gamepads;
 
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour
         {
             soundManager.OKSoundChange();
             soundManager.PlayerSE();
+            okButtonAnimator.Play("PlayerSelectButtonAnimation");
             okTextSprite.enabled = true;
             isOkSoundPlaying = true;
             StartCoroutine(ResetButtonFlag("OK", soundManager.SEClipLength()));
@@ -87,9 +89,6 @@ public class Player : MonoBehaviour
             case "Y":
                 isYButtonPlaying = false;
                 break;
-            //case "OK":
-            //    isOkSoundPlaying = false;
-            //    break;
         }
     }
 }

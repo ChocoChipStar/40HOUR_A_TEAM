@@ -885,6 +885,10 @@ PrefabInstance:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 472750379}
+    - target: {fileID: 5858578340995350436, guid: 38cf4932ec8ab8141888905c8b3b50d6, type: 3}
+      propertyPath: okButtonAnimator
+      value: 
+      objectReference: {fileID: 938640585}
     - target: {fileID: 7001991741363117151, guid: 38cf4932ec8ab8141888905c8b3b50d6, type: 3}
       propertyPath: m_Name
       value: Player3
@@ -1160,6 +1164,10 @@ PrefabInstance:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 1511733738}
+    - target: {fileID: 5858578340995350436, guid: 38cf4932ec8ab8141888905c8b3b50d6, type: 3}
+      propertyPath: okButtonAnimator
+      value: 
+      objectReference: {fileID: 1002624549}
     - target: {fileID: 7001991741363117151, guid: 38cf4932ec8ab8141888905c8b3b50d6, type: 3}
       propertyPath: m_Name
       value: Player4
@@ -1480,6 +1488,10 @@ PrefabInstance:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 531376646}
+    - target: {fileID: 5858578340995350436, guid: 38cf4932ec8ab8141888905c8b3b50d6, type: 3}
+      propertyPath: okButtonAnimator
+      value: 
+      objectReference: {fileID: 1535151246}
     - target: {fileID: 7001991741363117151, guid: 38cf4932ec8ab8141888905c8b3b50d6, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -2577,6 +2589,10 @@ PrefabInstance:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 1455656091}
+    - target: {fileID: 5858578340995350436, guid: 38cf4932ec8ab8141888905c8b3b50d6, type: 3}
+      propertyPath: okButtonAnimator
+      value: 
+      objectReference: {fileID: 782402261}
     - target: {fileID: 6621119473323664788, guid: 38cf4932ec8ab8141888905c8b3b50d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
