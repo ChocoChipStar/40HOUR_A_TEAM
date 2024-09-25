@@ -51,6 +51,8 @@ public class InputButtonManager : MonoBehaviour
 
     private const int NonEnterState = 0;
 
+    public bool[] isInputedButton = new bool[4];
+
     public bool isAllPlayerSelectedButton = false;
 
     void Start()
@@ -120,13 +122,13 @@ public class InputButtonManager : MonoBehaviour
         {
             if (InputButtonNum[i] != NonEnterState)
             {
-                Debug.Log(InputButtonNum[i]);
-
                 selectedCount++;
                 if(selectedCount == padCurrent)
                 {
                     isAllPlayerSelectedButton = true;
                 }
+
+                isInputedButton[i] = true;
                 continue;
             }
 
@@ -208,5 +210,7 @@ public class InputButtonManager : MonoBehaviour
         {
             InputButtonNum[i] = 0;
         }
+
+        isAllPlayerSelectedButton = false;
     }
 }

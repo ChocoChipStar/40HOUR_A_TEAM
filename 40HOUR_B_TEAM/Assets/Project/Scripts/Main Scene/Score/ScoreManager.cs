@@ -40,14 +40,6 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            ConvertButtonNumToScore();
-        }
-    }
-
     private void SetScoreText(int playerNum, int currentScore)
     {
         currentScoreText[playerNum].text = currentScore.ToString();
@@ -55,7 +47,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int playerNum)
     {
-        drawScoreImage.SetActiveImage(playerNum, inputButtonManager.InputButtonNum[playerNum], true);
+        drawScoreImage.SetActiveImage(playerNum, inputButtonManager.InputButtonNum[playerNum] - 1, true);
         playerScores[playerNum] = playerScores[playerNum] + addScores[playerNum];
         SetScoreText(playerNum, playerScores[playerNum]);
     }

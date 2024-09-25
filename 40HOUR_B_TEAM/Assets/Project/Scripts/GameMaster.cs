@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField]
     private CurtainMover[] curtainMover = null;
+
+    private bool isLastFrameActive = false;
 
     private const float DrawStartTextTime = 0.15f;
 
@@ -59,28 +62,11 @@ public class GameMaster : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(inputButtonManager.isAllPlayerSelectedButton != isLastFrameActive)
         {
-            StartCoroutine(HatShowTime());
-        }
+            StartCoroutine(MovementRoom());
 
-        if(inputButtonManager.isAllPlayerSelectedButton)
-        {
-            inputButtonManager.isAllPlayerSelectedButton = false;
-            StartCoroutine(HatShowTime());
-        }
-
-        for(int i = 0; i < PlayerData.PlayerMax; i++)
-        {
-            var readyCount = 0;
-            if (playerMover[i].isThinkingToRoom)
-            {
-                readyCount++;
-                if(readyCount == PlayerData.PlayerMax)
-                {
-                    StartCoroutine(HatShowTime());
-                }
-            }
+            isLastFrameActive = inputButtonManager.isAllPlayerSelectedButton;
         }
     }
 

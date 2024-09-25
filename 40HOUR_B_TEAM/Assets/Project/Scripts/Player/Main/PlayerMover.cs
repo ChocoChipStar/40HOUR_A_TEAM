@@ -18,6 +18,10 @@ public class PlayerMover : MonoBehaviour
     private const float RoomToShowcaseFrame = 45.0f;
     private const float ShowcaseToThinkingFrame = 72.0f;
 
+    public bool isRoom = false;
+    public bool isShowcase = false;
+    public bool isThinking = false;
+
     public bool isThinkingToRoom = false;
     public bool isRoomToShowcase = false;
     public bool isShowcaseToThinking = false;
@@ -71,7 +75,11 @@ public class PlayerMover : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, RoomPositionZ);
             isThinkingToRoom = false;
+
             curtainMover.isClose = true;
+
+            isRoom = true;
+            isThinking = false;
             return;
         }
 
@@ -84,6 +92,9 @@ public class PlayerMover : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, ShowcasePositionZ);
             isRoomToShowcase = false;
+
+            isShowcase = true;
+            isRoom = false;
             return;
         }
 
@@ -96,6 +107,9 @@ public class PlayerMover : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, ThinkingPositionZ);
             isShowcaseToThinking = false;
+
+            isThinking = true;
+            isShowcase = false;
             return;
         }
 

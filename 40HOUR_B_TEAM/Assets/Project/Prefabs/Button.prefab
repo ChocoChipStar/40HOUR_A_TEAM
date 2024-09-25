@@ -359,7 +359,6 @@ GameObject:
   - component: {fileID: 4330582537425983649}
   - component: {fileID: 6342745395588093785}
   - component: {fileID: 767009106014104402}
-  - component: {fileID: 2318522293610901502}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -454,28 +453,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2318522293610901502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7333535391972550602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b4b499d258249438a70eaed82ef56a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonA: {fileID: 3216771987633750818}
-  buttonB: {fileID: 1465540241960526268}
-  buttonX: {fileID: 44814696711830052}
-  buttonY: {fileID: 7379929666273275649}
-  buttonPlus: {fileID: 2137588444310621146}
-  buttonPositionA: {fileID: 8058037226876804017}
-  buttonPositionB: {fileID: 8230470014799151849}
-  buttonPositionX: {fileID: 8749587639917136905}
-  buttonPositionY: {fileID: 4677533556352910687}
-  buttonPositionPlus: {fileID: 4126205353393136678}
 --- !u!1 &8299937867043634253
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3498790296700018993}
+  - component: {fileID: 7350093181854399535}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -509,6 +487,30 @@ Transform:
   - {fileID: 5400077853713391056}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7350093181854399535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8299937867043634253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4b499d258249438a70eaed82ef56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundCounter: {fileID: 0}
+  buttonA: {fileID: 3216771987633750818}
+  buttonB: {fileID: 1465540241960526268}
+  buttonX: {fileID: 44814696711830052}
+  buttonY: {fileID: 7379929666273275649}
+  buttonPlus: {fileID: 2137588444310621146}
+  buttonPositionA: {fileID: 8058037226876804017}
+  buttonPositionB: {fileID: 8230470014799151849}
+  buttonPositionX: {fileID: 8749587639917136905}
+  buttonPositionY: {fileID: 4677533556352910687}
+  buttonPositionPlus: {fileID: 4126205353393136678}
+  isAllPlayerSelectedButton: 0
 --- !u!1 &8845039066676122501
 GameObject:
   m_ObjectHideFlags: 0

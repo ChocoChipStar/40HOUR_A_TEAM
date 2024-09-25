@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb7530536a33d541b45fea399c2578b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputButtonManager: {fileID: 659543683}
+  inputButtonManager: {fileID: 328404785}
   hatGenerator: {fileID: 215583638}
   playerObj:
   - {fileID: 348415560}
@@ -318,6 +318,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 1310
       objectReference: {fileID: 0}
+    - target: {fileID: 7350093181854399535, guid: 94ff395b33b75f04289fde6bed292bde, type: 3}
+      propertyPath: roundCounter
+      value: 
+      objectReference: {fileID: 1425406574}
     - target: {fileID: 7379929666273275649, guid: 94ff395b33b75f04289fde6bed292bde, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -339,6 +343,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94ff395b33b75f04289fde6bed292bde, type: 3}
+--- !u!114 &328404785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7350093181854399535, guid: 94ff395b33b75f04289fde6bed292bde, type: 3}
+  m_PrefabInstance: {fileID: 328404773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4b499d258249438a70eaed82ef56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347505171
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curtainMover: {fileID: 4275406976230508277}
+  isRoom: 0
+  isShowcase: 0
+  isThinking: 1
   isThinkingToRoom: 0
   isRoomToShowcase: 0
   isShowcaseToThinking: 0
@@ -569,17 +587,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &659543683 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2318522293610901502, guid: 94ff395b33b75f04289fde6bed292bde, type: 3}
-  m_PrefabInstance: {fileID: 328404773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b4b499d258249438a70eaed82ef56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &705344006
@@ -943,6 +950,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curtainMover: {fileID: 926951401}
+  isRoom: 0
+  isShowcase: 0
+  isThinking: 1
   isThinkingToRoom: 0
   isRoomToShowcase: 0
   isShowcaseToThinking: 0
@@ -1393,7 +1403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundCounter: {fileID: 1425406574}
-  inputButtonManager: {fileID: 659543683}
+  inputButtonManager: {fileID: 328404785}
   scoreManager: {fileID: 1890659580}
   hatManager: {fileID: 215583638}
   hatCover: {fileID: 215583639}
@@ -1568,6 +1578,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curtainMover: {fileID: 1093192110}
+  isRoom: 0
+  isShowcase: 0
+  isThinking: 1
   isThinkingToRoom: 0
   isRoomToShowcase: 0
   isShowcaseToThinking: 0
@@ -1639,6 +1652,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curtainMover: {fileID: 1443794599}
+  isRoom: 0
+  isShowcase: 0
+  isThinking: 1
   isThinkingToRoom: 0
   isRoomToShowcase: 0
   isShowcaseToThinking: 0
@@ -1790,13 +1806,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 215583638}
     - target: {fileID: 2805342535453752504, guid: e764e5707e2063645b716875a6939907, type: 3}
+      propertyPath: roundCounter
+      value: 
+      objectReference: {fileID: 1425406574}
+    - target: {fileID: 2805342535453752504, guid: e764e5707e2063645b716875a6939907, type: 3}
       propertyPath: drawScoreImage
       value: 
       objectReference: {fileID: 103300294}
     - target: {fileID: 2805342535453752504, guid: e764e5707e2063645b716875a6939907, type: 3}
       propertyPath: inputButtonManager
       value: 
-      objectReference: {fileID: 659543683}
+      objectReference: {fileID: 328404785}
     - target: {fileID: 2805342535453752504, guid: e764e5707e2063645b716875a6939907, type: 3}
       propertyPath: currentScoreText.Array.data[0]
       value: 
