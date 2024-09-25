@@ -32,7 +32,7 @@ public class TutorialToMainSceneTransition : MonoBehaviour
         // 現在の入力情報
         var keyboardCurrent = Keyboard.current;
         var gamepadCurrent = Gamepad.current;
-        var buttonB = Gamepad.current.bButton.wasPressedThisFrame;
+        var buttonA = Gamepad.current.aButton.wasPressedThisFrame;
 
         if (keyboardCurrent == null)
         {
@@ -48,7 +48,7 @@ public class TutorialToMainSceneTransition : MonoBehaviour
             return;
         }
 
-        if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonB)
+        if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonA)
         {
 
             //enterキーかコントローラーのBボタンが押された瞬間に
