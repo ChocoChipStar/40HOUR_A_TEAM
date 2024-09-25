@@ -50,7 +50,8 @@ public class ResultSelectScript : MonoBehaviour
     private bool rightStick = false;
 
     //フェードアウト用　画像の透明度の変化値
-    private float alpha = 0.01f; 
+    //60フレームで暗転
+    private float alpha = 0.0167f; 
 
     //ボタン非表示
     void Start()
@@ -107,38 +108,41 @@ public class ResultSelectScript : MonoBehaviour
         {
             EventSystem.current.SetSelectedGameObject(titleButtonObj);
         }
-        
-        if(isSelect && isTitle && fadeOutImage.color.a < 1)
-        {
-            
 
+
+
+    }
+
+    public void FixedUpdate()
+    {
+
+        //暗転したらタイトルシーンへ
+        if (isSelect && isTitle && fadeOutImage.color.a < 1)
+        {
+            //60フレームで暗転
             fadeOutImage.color += new Color(0, 0, 0, alpha);
 
         }
-        else if(isSelect && isTitle && fadeOutImage.color.a >= 1)
+        else if (isSelect && isTitle && fadeOutImage.color.a >= 1)
         {
-            //完全に暗転した１秒後にシーン遷移
-            Invoke("ForTitleScene", 1); 　
+            ForTitleScene();
         }
 
+        //暗転したらメインシーンへ
         if (isSelect && isRetry && fadeOutImage.color.a < 1)
         {
-
-
+            //60フレームで暗転
             fadeOutImage.color += new Color(0, 0, 0, alpha);
 
         }
         else if (isSelect && isRetry && fadeOutImage.color.a >= 1)
         {
-            //完全に暗転した１秒後にシーン遷移
-            Invoke("ForMainScene", 1);
+            ForMainScene();
         }
-
 
     }
 
-   
-    //タイトルへ遷移
+    //タイトルシーン遷移用の関数
     public void TitleOnclick()
     {
 
@@ -147,7 +151,6 @@ public class ResultSelectScript : MonoBehaviour
             selectSound.Play();
             isSelect = true;
             isTitle = true;
-
         }
        
     }
@@ -156,7 +159,7 @@ public class ResultSelectScript : MonoBehaviour
         SceneManager.LoadScene("TitleScene");
     }
 
-    //メインシーンへ遷移
+    //メインシーン遷移用の関数
     public void RetryOnclick()
     {
 
@@ -165,8 +168,7 @@ public class ResultSelectScript : MonoBehaviour
             selectSound.Play();
             isSelect = true;
             isRetry = true;
-            
-           
+                       
         }
     }
    
