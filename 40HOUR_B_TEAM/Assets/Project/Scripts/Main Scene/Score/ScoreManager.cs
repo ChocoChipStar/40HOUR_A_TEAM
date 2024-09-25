@@ -10,6 +10,9 @@ public class ScoreManager : MonoBehaviour
     private TextMeshProUGUI[] currentScoreText = new TextMeshProUGUI[4];
 
     [SerializeField]
+    private RoundCounter roundCounter = null;
+
+    [SerializeField]
     private DrawScoreImage drawScoreImage = null;
 
     [SerializeField]
@@ -26,6 +29,8 @@ public class ScoreManager : MonoBehaviour
     private const int EaglesHatScore = 2;
     private const int KingHatScore = 3;
 
+    private const string FixedName = "(Clone)";
+
     private void Start()
     {
         for(int i = 0; i < PlayerData.PlayerMax; i++)
@@ -36,6 +41,11 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
+        if(Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            ConvertButtonNumToScore();
+        }
+
         if(Keyboard.current.hKey.wasPressedThisFrame)
         {
             for (int i = 0; i < PlayerData.PlayerMax; i++)
@@ -64,13 +74,13 @@ public class ScoreManager : MonoBehaviour
     {
         for(int i = 0; i < PlayerData.PlayerMax; i++)
         {
-            if (hatGenerator.locatedHat[inputButtonManager.InputButtonNum[0]].gameObject.name != HatData.EaglesHatName)
+            if (hatGenerator.locatedHat[inputButtonManager.InputButtonNum[i] - 1].gameObject.name == HatData.EaglesHatName + FixedName)
             {
                 addScores[i] = EaglesHatScore;
                 continue;
             }
 
-            if (hatGenerator.locatedHat[inputButtonManager.InputButtonNum[0]].gameObject.name != HatData.KingHatName)
+            if (hatGenerator.locatedHat[inputButtonManager.InputButtonNum[i] - 1].gameObject.name == HatData.KingHatName + FixedName)
             {
                 addScores[i] = KingHatScore;
                 continue;

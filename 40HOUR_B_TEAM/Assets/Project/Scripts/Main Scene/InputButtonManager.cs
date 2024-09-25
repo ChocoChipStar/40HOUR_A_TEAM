@@ -29,6 +29,9 @@ public class InputButtonManager : MonoBehaviour
     [SerializeField]
     private RectTransform buttonPositionPlus;
 
+    private bool isActiveButtonUI = false;
+    private bool isAllPlayerSelectedButton = false;
+
     public readonly int[] InputButtonNum = new int[4];
 
     private readonly float[,] ButtonFixXPosition = new float[5, 5];
@@ -39,11 +42,11 @@ public class InputButtonManager : MonoBehaviour
 
     private readonly float[] ButtonSpacePosition = new float[] { 350.0f, 350.0f, 350.0f, 350.0f, 500.0f };
 
-    private const int ButtonANum = 0;
-    private const int ButtonBNum = 1;
-    private const int ButtonXNum = 2;
-    private const int ButtonYNum = 3;
-    private const int ButtonPlusNum = 4;
+    private const int ButtonANum = 1;
+    private const int ButtonBNum = 2;
+    private const int ButtonXNum = 3;
+    private const int ButtonYNum = 4;
+    private const int ButtonPlusNum = 5;
 
     private const float ButtonFixYPosition = 140.0f;
 
@@ -97,12 +100,28 @@ public class InputButtonManager : MonoBehaviour
         {
             return;
         }
-           
+
+        if(!isActiveButtonUI)
+        {
+            return;
+        }
+
+        if(isAllPlayerSelectedButton)
+        {
+            return;
+        }
+
         var padCurrent = Gamepad.all.Count;
+        var selectedCount = 0;
         for (int i = 0;i < padCurrent;i++)
         {
             if (InputButtonNum[i] != NonEnterState)
             {
+                selectedCount++;
+                if(selectedCount == padCurrent)
+                {
+                    isAllPlayerSelectedButton = true;
+                }
                 continue;
             }
 
@@ -117,6 +136,7 @@ public class InputButtonManager : MonoBehaviour
         buttonX.enabled = true;
         buttonY.enabled = true;
         buttonPlus.enabled = true;
+        isActiveButtonUI = true;
     }
 
     private void SurveyInputButtons(int surveyValue)

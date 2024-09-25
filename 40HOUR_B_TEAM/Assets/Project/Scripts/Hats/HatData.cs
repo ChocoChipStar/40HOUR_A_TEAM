@@ -8,6 +8,8 @@ public static class HatData
 
     public static readonly int[] GenerateCountInRound = new int[] { 4, 4, 3, 2, 1 };
 
+    public static readonly int[] RoundHatCount = new int[] { 5, 5, 4, 4, 3 };
+
     public static readonly Vector3[,] GeneratePosition = new Vector3[,] { };
 
     public static readonly float[,] GenerateFixXPosition;
