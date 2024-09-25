@@ -34,12 +34,15 @@ public class ResultSelectScript : MonoBehaviour
     [SerializeField]
     private Image titleImage;
 
-    //フェードアウト用イメージコンポーネント
+    //フェード用イメージコンポーネント
     [SerializeField]
     private Image fadeOutImage;
 
     //セレクトフラグ
     public bool isSelect = false;
+
+    //フェードイン用フラグ
+    private bool isFadeIn = false;
 
     //フェードアウト用フラグ
     private bool isTitle = false;
@@ -49,9 +52,9 @@ public class ResultSelectScript : MonoBehaviour
     private bool leftStick = false;
     private bool rightStick = false;
 
-    //フェードアウト用　画像の透明度の変化値
-    //60フレームで暗転
-    private float alpha = 0.0167f; 
+    //フェード用　画像の透明度の変化値
+    private float fadeInA = 0.05f;    //20フレームでフェードイン
+    private float fadeOutA = 0.0167f;  //60フレームで暗転
 
     //ボタン非表示
     void Start()
@@ -60,6 +63,7 @@ public class ResultSelectScript : MonoBehaviour
         titleButton.enabled = false;
         retryImage.enabled = false;
         titleImage.enabled = false;
+        isFadeIn = true;
         fanfareSound.Play();
         Invoke("ButtonActive", 4);
     }
@@ -116,11 +120,17 @@ public class ResultSelectScript : MonoBehaviour
     public void FixedUpdate()
     {
 
+        if(isFadeIn &&  fadeOutImage.color.a > 0)
+        {
+            //フェードイン
+            fadeOutImage.color += new Color(0, 0, 0, -fadeInA);
+        }
+
         //暗転したらタイトルシーンへ
         if (isSelect && isTitle && fadeOutImage.color.a < 1)
         {
-            //60フレームで暗転
-            fadeOutImage.color += new Color(0, 0, 0, alpha);
+            
+            fadeOutImage.color += new Color(0, 0, 0, fadeOutA);
 
         }
         else if (isSelect && isTitle && fadeOutImage.color.a >= 1)
@@ -131,8 +141,8 @@ public class ResultSelectScript : MonoBehaviour
         //暗転したらメインシーンへ
         if (isSelect && isRetry && fadeOutImage.color.a < 1)
         {
-            //60フレームで暗転
-            fadeOutImage.color += new Color(0, 0, 0, alpha);
+           
+            fadeOutImage.color += new Color(0, 0, 0, fadeOutA);
 
         }
         else if (isSelect && isRetry && fadeOutImage.color.a >= 1)
@@ -151,6 +161,7 @@ public class ResultSelectScript : MonoBehaviour
             selectSound.Play();
             isSelect = true;
             isTitle = true;
+            isFadeIn = false;
         }
        
     }
@@ -168,6 +179,7 @@ public class ResultSelectScript : MonoBehaviour
             selectSound.Play();
             isSelect = true;
             isRetry = true;
+            isFadeIn = false;
                        
         }
     }
