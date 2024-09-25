@@ -18,12 +18,14 @@ public class TitleToTutorialTransition : MonoBehaviour
     [SerializeField]
     private Animator titleButtonAnim;
 
-    bool changeEffect;
+    bool changeEffect = false;
+
+    bool startFlag = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        changeEffect = false;
+       
     }
 
     // Update is called once per frame
@@ -53,14 +55,15 @@ public class TitleToTutorialTransition : MonoBehaviour
 
       
 
-        if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonA)
+        if (keyboardCurrent.enterKey.wasPressedThisFrame && !startFlag || buttonA && !startFlag)
         {
 
             //enterキーかコントローラーのBボタンが押された瞬間に
             //エフェクトを再生
             titleSE.Play();
             titleButtonAnim.SetBool("Start", true);
-            changeEffect = true;
+            changeEffect = true; 
+            startFlag = true;
             
 
         }
