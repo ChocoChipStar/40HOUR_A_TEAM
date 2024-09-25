@@ -32,7 +32,6 @@ public class TitleToTutorialTransition : MonoBehaviour
         // 現在の入力情報
         var keyboardCurrent = Keyboard.current;
         var gamepadCurrent = Gamepad.current;
-        var buttonB = Gamepad.current.bButton.wasPressedThisFrame;
         var buttonA = Gamepad.current.aButton.wasPressedThisFrame;
 
 
@@ -52,10 +51,9 @@ public class TitleToTutorialTransition : MonoBehaviour
             return;
         }
 
-        Debug.Log(keyboardCurrent.enterKey.wasPressedThisFrame);
-        Debug.Log(buttonB);
+      
 
-        if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonB)
+        if (keyboardCurrent.enterKey.wasPressedThisFrame || buttonA)
         {
 
             //enterキーかコントローラーのBボタンが押された瞬間に
@@ -66,13 +64,7 @@ public class TitleToTutorialTransition : MonoBehaviour
             
 
         }
-        if (keyboardCurrent.spaceKey.wasPressedThisFrame || buttonA)
-        {
-            //spaceキーかントローラーのAボタンが押された瞬間に
-            //アプリケーションを閉じる
-            titleSE.Play();
-            Application.Quit();
-        }
+        
         
         //エフェクト再生後メインシーンをロード
         if (scenechangeEffect.switchCount == 59)
