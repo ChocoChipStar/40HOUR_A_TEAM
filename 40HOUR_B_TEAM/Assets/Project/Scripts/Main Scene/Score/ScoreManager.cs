@@ -56,10 +56,10 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private int Addscore(int playerNum, int currentScore, int addValue)
+    private void Addscore(int playerNum, int currentScore, int addValue)
     {
         drawScoreImage.SetActiveImage(playerNum, inputButtonManager.InputButtonNum[playerNum], true);
-        return currentScore + addValue;
+        playerScores[playerNum] =  currentScore + addValue;
     }
 
     private void SetScoreText(int playerNum, int currentScore)

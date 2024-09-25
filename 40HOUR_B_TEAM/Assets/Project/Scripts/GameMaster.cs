@@ -67,6 +67,12 @@ public class GameMaster : MonoBehaviour
         {
             StartCoroutine(HatShowTime());
         }
+
+        if(inputButtonManager.isAllPlayerSelectedButton)
+        {
+            MovementRoom();
+            inputButtonManager.isAllPlayerSelectedButton = false;
+        }
     }
 
     private IEnumerator DrawRoundText()
@@ -82,7 +88,10 @@ public class GameMaster : MonoBehaviour
 
         // ラウンドテキスト非表示
 
-        // ボタンUI表示
+        // 入力ボタンデータ初期化
+        inputButtonManager.ResetInputButtonData();
+
+        // ボタンUI表示と入力状態ON
         inputButtonManager.DrawButtonUI();
     }
 
@@ -99,6 +108,8 @@ public class GameMaster : MonoBehaviour
         }
         
         yield return new WaitForSeconds(RoomMovementTime);
+
+        StartCoroutine(HatShowTime());
     }
 
     // 全プレイヤーが衣装部屋に入った後に実行

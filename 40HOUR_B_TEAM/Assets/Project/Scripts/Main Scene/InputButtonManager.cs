@@ -30,7 +30,6 @@ public class InputButtonManager : MonoBehaviour
     private RectTransform buttonPositionPlus;
 
     private bool isActiveButtonUI = false;
-    private bool isAllPlayerSelectedButton = false;
 
     public readonly int[] InputButtonNum = new int[4];
 
@@ -51,6 +50,8 @@ public class InputButtonManager : MonoBehaviour
     private const float ButtonFixYPosition = 140.0f;
 
     private const int NonEnterState = 0;
+
+    public bool isAllPlayerSelectedButton = false;
 
     void Start()
     {
@@ -95,6 +96,11 @@ public class InputButtonManager : MonoBehaviour
 
     private void Update()
     {
+        if(Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            ResetInputButtonData();
+        }
+
         //ゲームパッド接続確認
         if (Gamepad.current == null)
         {
@@ -144,18 +150,21 @@ public class InputButtonManager : MonoBehaviour
         if (Gamepad.all[surveyValue].aButton.wasPressedThisFrame)
         {
             InputButtonNum[surveyValue] = ButtonANum;
+            Debug.Log(surveyValue + " PRESS A 1");
         }
         if (Gamepad.all[surveyValue].bButton.wasPressedThisFrame)
         {
             InputButtonNum[surveyValue] = ButtonBNum;
+            Debug.Log(surveyValue + " PRESS B 2");
         }
         if (Gamepad.all[surveyValue].xButton.wasPressedThisFrame)
         {
             InputButtonNum[surveyValue] = ButtonXNum;
+            Debug.Log(surveyValue + " PRESS X 3");
         }
 
         //ラウンド5(5を含む)以上ならリターン
-        if (roundCounter.GetCurrentRound() > 4)
+        if (roundCounter.GetCurrentRound() >= 4)
         {
             return;
         }
@@ -163,6 +172,7 @@ public class InputButtonManager : MonoBehaviour
         if (Gamepad.all[surveyValue].yButton.wasPressedThisFrame)
         {
             InputButtonNum[surveyValue] = ButtonYNum;
+            Debug.Log(surveyValue + " PRESS Y 4");
         }
 
         // ラウンド3(3を含まない)以上ならリターン
@@ -175,6 +185,7 @@ public class InputButtonManager : MonoBehaviour
             Gamepad.all[surveyValue].dpad.left.wasPressedThisFrame || Gamepad.all[surveyValue].dpad.right.wasPressedThisFrame)
         {
             InputButtonNum[surveyValue] = ButtonPlusNum;
+            Debug.Log(surveyValue + " PRESS PULS 5");
         }
     }
     public void RelocatingButton(int currentRound)
@@ -190,5 +201,15 @@ public class InputButtonManager : MonoBehaviour
         buttonX.enabled    = ButtonActive[currentRound, ButtonXNum];
         buttonY.enabled    = ButtonActive[currentRound, ButtonYNum];
         buttonPlus.enabled = ButtonActive[currentRound, ButtonPlusNum];
+    }
+
+    public void ResetInputButtonData()
+    {
+        for(int i = 0; i < InputButtonNum.Length; i++)
+        {
+            InputButtonNum[i] = 0;
+        }
+
+        isAllPlayerSelectedButton = false;
     }
 }
