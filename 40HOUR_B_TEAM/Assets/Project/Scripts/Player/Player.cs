@@ -87,9 +87,9 @@ public class Player : MonoBehaviour
             case "Y":
                 isYButtonPlaying = false;
                 break;
-            case "OK":
-                isOkSoundPlaying = false;
-                break;
+            //case "OK":
+            //    isOkSoundPlaying = false;
+            //    break;
         }
     }
 }
