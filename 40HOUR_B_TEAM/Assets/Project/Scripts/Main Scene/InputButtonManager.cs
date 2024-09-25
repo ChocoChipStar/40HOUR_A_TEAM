@@ -31,7 +31,7 @@ public class InputButtonManager : MonoBehaviour
 
     private bool isActiveButtonUI = false;
 
-    public readonly int[] InputButtonNum = new int[4];
+    public int[] InputButtonNum = new int[4];
 
     private readonly float[,] ButtonFixXPosition = new float[5, 5];
 
@@ -109,8 +109,6 @@ public class InputButtonManager : MonoBehaviour
             return;
         }
 
-        Debug.Log(isAllPlayerSelectedButton);
-       
         if(isAllPlayerSelectedButton == true)
         {
             return;
@@ -191,17 +189,17 @@ public class InputButtonManager : MonoBehaviour
     }
     public void RelocatingButton(int currentRound)
     {
-        buttonPositionA.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonANum],    ButtonFixYPosition, 0);
-        buttonPositionB.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonBNum],    ButtonFixYPosition, 0);
-        buttonPositionX.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonXNum],    ButtonFixYPosition, 0);
-        buttonPositionY.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonYNum],    ButtonFixYPosition, 0);
-        buttonPositionPlus.position = new Vector3(ButtonFixXPosition[currentRound, ButtonPlusNum], ButtonFixYPosition, 0);
+        buttonPositionA.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonANum - 1],    ButtonFixYPosition, 0);
+        buttonPositionB.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonBNum - 1],    ButtonFixYPosition, 0);
+        buttonPositionX.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonXNum - 1],    ButtonFixYPosition, 0);
+        buttonPositionY.position    = new Vector3(ButtonFixXPosition[currentRound, ButtonYNum - 1],    ButtonFixYPosition, 0);
+        buttonPositionPlus.position = new Vector3(ButtonFixXPosition[currentRound, ButtonPlusNum - 1], ButtonFixYPosition, 0);
 
-        buttonA.enabled    = ButtonActive[currentRound, ButtonANum];
-        buttonB.enabled    = ButtonActive[currentRound, ButtonBNum];
-        buttonX.enabled    = ButtonActive[currentRound, ButtonXNum];
-        buttonY.enabled    = ButtonActive[currentRound, ButtonYNum];
-        buttonPlus.enabled = ButtonActive[currentRound, ButtonPlusNum];
+        buttonA.enabled    = ButtonActive[currentRound, ButtonANum - 1];
+        buttonB.enabled    = ButtonActive[currentRound, ButtonBNum - 1];
+        buttonX.enabled    = ButtonActive[currentRound, ButtonXNum - 1];
+        buttonY.enabled    = ButtonActive[currentRound, ButtonYNum - 1];
+        buttonPlus.enabled = ButtonActive[currentRound, ButtonPlusNum - 1];
     }
 
     public void ResetInputButtonData()

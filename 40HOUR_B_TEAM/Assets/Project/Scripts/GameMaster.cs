@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -27,6 +28,10 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField]
     private CurtainMover[] curtainMover = null;
+
+    private int lastFrameRound = 0;
+
+    private bool isInput = false;
 
     private bool isLastFrameActive = false;
 
@@ -62,12 +67,18 @@ public class GameMaster : MonoBehaviour
 
     private void Update()
     {
-        if(inputButtonManager.isAllPlayerSelectedButton != isLastFrameActive)
+        if(roundCounter.GetCurrentRound() != lastFrameRound)
+        {
+            StartCoroutine(DrawRoundText());
+            lastFrameRound = roundCounter.GetCurrentRound();
+        }
+
+        if(inputButtonManager.isAllPlayerSelectedButton != isLastFrameActive && inputButtonManager.isAllPlayerSelectedButton)
         {
             StartCoroutine(MovementRoom());
-
             isLastFrameActive = inputButtonManager.isAllPlayerSelectedButton;
         }
+
     }
 
     private IEnumerator DrawRoundText()
@@ -83,8 +94,6 @@ public class GameMaster : MonoBehaviour
 
         // ラウンドテキスト非表示
 
-        // 入力ボタンデータ初期化
-        inputButtonManager.ResetInputButtonData();
 
         // ボタンUI表示と入力状態ON
         inputButtonManager.DrawButtonUI();
@@ -117,6 +126,9 @@ public class GameMaster : MonoBehaviour
 
         // 選択したぼうしがスコア何点のぼうしか確認する
         scoreManager.ConvertButtonNumToScore();
+
+        if(roundCounter.GetCurrentRound() >= 1)
+            hatCover.DestroyHat();
 
         yield return new WaitForSeconds(CloseCurtainTime);
 
@@ -180,13 +192,19 @@ public class GameMaster : MonoBehaviour
         {
             playerMover[i].isShowcaseToThinking = true;
         }
-        
+
+        // 入力ボタンデータ初期化
+        inputButtonManager.ResetInputButtonData();
+        isLastFrameActive = false;
+
         // カメラがズームアウトする
-        
+
 
         yield return new WaitForSeconds(ThinkingMovementTime);
 
         // ラウンドカウントを増やす
-        roundCounter.SetNextRound();
+        // roundCounter.SetNextRound();
+
+        SceneManager.LoadScene("ResultScene");
     }
 }

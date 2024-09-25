@@ -47,9 +47,18 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int playerNum)
     {
-        drawScoreImage.SetActiveImage(playerNum, inputButtonManager.InputButtonNum[playerNum] - 1, true);
         playerScores[playerNum] = playerScores[playerNum] + addScores[playerNum];
+        StartCoroutine(PlayImage(playerNum));
         SetScoreText(playerNum, playerScores[playerNum]);
+    }
+
+    private IEnumerator PlayImage(int playerNum)
+    {
+        drawScoreImage.SetActiveImage(playerNum, addScores, true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        drawScoreImage.SetActiveImage(playerNum, addScores, false);
     }
 
     /// <summary>

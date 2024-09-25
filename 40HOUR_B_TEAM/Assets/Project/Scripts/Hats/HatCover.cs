@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class HatCover : MonoBehaviour
 {
@@ -33,6 +30,14 @@ public class HatCover : MonoBehaviour
 
             instance.transform.localPosition = new Vector3(0.0f, -6.0f, 0.0f);
             instance.transform.localRotation = Quaternion.identity;
+        }
+    }
+
+    public void DestroyHat()
+    {
+        for(int i = 0; i < PlayerData.PlayerMax; i++)
+        {
+            Destroy(hatPos[i].transform.GetChild(0).gameObject);
         }
     }
 }

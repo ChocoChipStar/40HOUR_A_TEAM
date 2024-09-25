@@ -18,17 +18,17 @@ public class DrawScoreImage : MonoBehaviour
     void Start()
     {
         //すべてのスコア加算画像を非表示
-        for(int i = 0; i < playerNum.Length - 1; i++)
+        for(int i = 0; i < playerNum.Length; i++)
         {
-            for(int j = 0; j < playerNum[i].addScoreImages.Length - 1; j++)
+            for(int j = 0; j < playerNum[i].addScoreImages.Length; j++)
             {
                 playerNum[i].addScoreImages[j].enabled = false;
             }
         }
     }
 
-    public void SetActiveImage(int playerNumber, int addScore, bool isActive)
+    public void SetActiveImage(int playerNumber, List<int>addScores, bool isActive)
     {
-        playerNum[playerNumber].addScoreImages[addScore].enabled = isActive;
+        playerNum[playerNumber].addScoreImages[addScores[playerNumber] - 1].enabled = isActive;
     }
 }
