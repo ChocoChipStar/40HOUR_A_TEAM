@@ -24,6 +24,9 @@ public class GameMaster : MonoBehaviour
     private MannequinManager mannequinManager = null;
 
     [SerializeField]
+    private PlayerHatAnimation playerAnimation = null;
+
+    [SerializeField]
     private PlayerMover[] playerMover = null;
 
     [SerializeField]
@@ -109,9 +112,15 @@ public class GameMaster : MonoBehaviour
         for(int i = 0; i < PlayerData.PlayerMax; i++)
         {
             playerMover[i].isThinkingToRoom = true;
+            playerAnimation.PlayerAnimation(i, "AnimationRun", true);
         }
         
         yield return new WaitForSeconds(RoomMovementTime);
+
+        for (int i = 0; i < PlayerData.PlayerMax; i++)
+        {
+            playerAnimation.PlayerAnimation(i, "AnimationRun", false);
+        }
 
         StartCoroutine(HatShowTime());
     }
@@ -150,9 +159,15 @@ public class GameMaster : MonoBehaviour
         for (int i = 0; i < PlayerData.PlayerMax; i++)
         {
             playerMover[i].isRoomToShowcase = true;
+            playerAnimation.PlayerAnimation(i, "AnimationRun", true);
         }
         
         yield return new WaitForSeconds(ShowcaseMovementTime);
+
+        for(int i = 0; i < PlayerData.PlayerMax; i++)
+        {
+            playerAnimation.PlayerAnimation(i, "AnimationRun", false);
+        }
 
         // 一秒待機
         yield return new WaitForSeconds(IntervalTime);
@@ -191,6 +206,7 @@ public class GameMaster : MonoBehaviour
         for (int i = 0; i < PlayerData.PlayerMax; i++)
         {
             playerMover[i].isShowcaseToThinking = true;
+            playerAnimation.PlayerAnimation(i, "AnimationRun", true);
         }
 
         // 入力ボタンデータ初期化
@@ -201,6 +217,11 @@ public class GameMaster : MonoBehaviour
 
 
         yield return new WaitForSeconds(ThinkingMovementTime);
+
+        for (int i = 0; i < PlayerData.PlayerMax; i++)
+        {
+            playerAnimation.PlayerAnimation(i, "AnimationRun", false);
+        }
 
         // ラウンドカウントを増やす
         // roundCounter.SetNextRound();

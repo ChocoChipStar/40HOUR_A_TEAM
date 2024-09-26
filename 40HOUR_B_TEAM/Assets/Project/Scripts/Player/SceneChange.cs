@@ -47,7 +47,7 @@ public class SceneChange : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("TitleScene");
+            SceneManager.LoadScene("TutorialScene");
         }
     }
 }

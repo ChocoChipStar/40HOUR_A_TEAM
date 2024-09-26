@@ -72,7 +72,7 @@ public class TitleToTutorialTransition : MonoBehaviour
         //エフェクト再生後メインシーンをロード
         if (scenechangeEffect.switchCount == 59)
         {
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("ConfirmControllerScene");
         }
 
 

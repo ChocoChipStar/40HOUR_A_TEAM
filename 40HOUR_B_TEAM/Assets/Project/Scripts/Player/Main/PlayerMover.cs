@@ -84,6 +84,7 @@ public class PlayerMover : MonoBehaviour
         }
 
         transform.position += new Vector3(0.0f, 0.0f, thinkingToRoomMomentum);
+        transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
     }
 
     private void MoveToShowcase()
@@ -99,6 +100,7 @@ public class PlayerMover : MonoBehaviour
         }
 
         transform.position += new Vector3(0.0f, 0.0f, roomToShowcaseMomentum);
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
     }
 
     private void MoveToThinkingSpace()
@@ -114,5 +116,6 @@ public class PlayerMover : MonoBehaviour
         }
 
         transform.position += new Vector3(0.0f, 0.0f, showcaseToThikingMovementum);
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
     }
 }

@@ -85,7 +85,7 @@ public class PlayerHatAnimation : MonoBehaviour
         }
     }
     //アニメーションフラグ管理
-    private void PlayerAnimation(int animationNumber, string animationName, bool isActive)
+    public void PlayerAnimation(int animationNumber, string animationName, bool isActive)
     {
         playerAnimation[animationNumber].SetBool(animationName, isActive);
     }
